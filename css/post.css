@@ -1,8 +1,259 @@
 @charset "utf-8";
-.post_main {
-    height: 1000px;
+body {
     background-color: rgb(247, 240, 228);
-    padding-left: 6%;
+    margin: 0;
+}
+
+.post_main {
+    /* height: 1000px; */
+    background-color: rgb(247, 240, 228);
+    padding-left: 96px;
     padding-right: 4%;
-    padding-top: 8px;
+    padding-top: 24px;
+    padding-bottom: 40px;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: rgb(188, 220, 246);
+    width: 64px;
+    height: 100%;
+    top: 0;
+}
+
+.sidebar_main {
+    position: relative;
+    top: 62px;
+    text-align: center;
+}
+
+.sidebar_barrier {
+    height: 3px;
+    position: relative;
+    left: 12px;
+    width: 60%;
+    background-color: rgb(3, 12, 92);
+    border-radius: 30px/3px;
+}
+
+.sidebar_column {
+    height: 64px;
+    font-size: 18px;
+    font-weight: 900;
+    color: rgb(2, 9, 22);
+    /* background-color: darkgoldenrod; */
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.sc1 {
+    line-height: 64px;
+    /*一行就是一行栏*/
+}
+
+.sc2 {
+    line-height: 24px;
+    /*一行强行分两行的方法*/
+}
+
+.sc21 {
+    position: relative;
+    top: 8px;
+}
+
+.sc22 {
+    position: relative;
+    top: 6px;
+}
+
+.sidebar_column_now,
+.sidebar_column:hover {
+    transition: all 0.3s;
+    background-color: rgb(93, 147, 192);
+    /*rgb(0, 228, 228);*/
+    color: rgb(0, 6, 15);
+    border-radius: 36%;
+}
+
+#search_input {
+    transition: all 0.3s;
+    height: 36px;
+    font-size: 16px;
+    border-radius: 12px;
+    width: 75%;
+    text-indent: 1em;
+}
+
+#search_input:focus {
+    transition: all 0.3s;
+    /*为了修复一个chorme上点击后产生的方框不美观的问题*/
+    border-radius: 0px;
+}
+
+#search_button {
+    margin-left: 16px;
+    height: 36px;
+    width: 56px;
+    font-size: 18px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background-color: rgb(211, 211, 211);
+    box-shadow: 3px 3px 3px darkgray;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: black;
+    text-decoration: none;
+}
+
+#search_button_now,
+#search_button:hover {
+    background-color: rgb(148, 148, 148);
+    box-shadow: 3px 3px 3px rgb(70, 70, 70);
+    transition: all 0.3s;
+    /* color: red; */
+}
+
+@keyframes click_search {
+    50% {
+        background-color: gold;
+        box-shadow: 3px 3px 3px goldenrod;
+    }
+    100% {
+        background-color: rgb(211, 211, 211);
+        box-shadow: 3px 3px 3px darkgray;
+    }
+}
+
+.search_button_clicking {
+    animation-name: click_search;
+    animation-duration: 0.3s;
+}
+
+.post {
+    width: 100%;
+    /* height: 192px; let it auto better */
+    transition: all 0.3s;
+    margin-top: 30px;
+    display: none;
+    border: 2px dotted rgb(15, 13, 29);
+    border-radius: 25px;
+    padding: 8px;
+    cursor: pointer;
+    background-color: rgb(251, 251, 219);
+    transition: all 0.3s;
+}
+
+.post:hover {
+    transition: all 0.3s;
+    background-color: rgb(253, 253, 193);
+    /* border: 2px groove rgb(15, 13, 29); */
+}
+
+.post_title {
+    font-size: 22px;
+    font-weight: 700;
+    padding-top: 10px;
+    padding-left: 35px;
+    padding-bottom: 8px;
+    color: navy;
+}
+
+.post_abbr {
+    text-indent: 2em;
+    font-size: 18px;
+    padding: 12px;
+    color: rgb(14, 44, 100);
+}
+
+.post_date {
+    float: right;
+    /* text-align: right; */
+    padding-right: 32px;
+    font-size: 15px;
+    color: rgb(14, 44, 100);
+}
+
+.post_bottom {
+    height: 26px;
+}
+
+.post_tag {
+    float: left;
+    font-size: 15px;
+    padding-left: 30px;
+    color: rgb(14, 44, 100);
+}
+
+#search_feedback {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 12px;
+    margin-left: 30px;
+}
+
+.page_block {
+    transition: all 0.3s;
+    width: 28px;
+    height: 28px;
+    /* background-color: wheat; */
+    /* border: 1px solid black; */
+    margin-right: 15px;
+    float: left;
+    line-height: 28px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 900;
+    color: rgb(182, 130, 0);
+    cursor: pointer;
+}
+
+.page_last {
+    /* background-color: goldenrod; */
+    /* height: 1px; */
+    position: relative;
+    top: 4px;
+    left: 6px;
+    border-left: 18px solid rgb(182, 130, 0);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    transition: all 0.3s;
+}
+
+.page_last_on,
+.page_last:hover {
+    transition: all 0.3s;
+    border-left: 18px solid rgb(98, 69, 13);
+}
+
+.page_first {
+    position: relative;
+    top: 4px;
+    left: -4px;
+    border-right: 18px solid rgb(182, 130, 0);
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    transition: all 0.3s;
+}
+
+.page_first_on,
+.page_first:hover {
+    transition: all 0.3s;
+    border-right: 18px solid rgb(98, 69, 13);
+    /*该hover事实上与page_block hover触发范围不一致，所以用了jQuery手写*/
+}
+
+.page_button {
+    height: 40px;
+    /* background-color: wheat; */
+}
+
+.pb_list {
+    float: right;
+    margin-top: 20px;
+}
+
+.page_block:hover {
+    transition: all 0.3s;
+    background-color: wheat;
+    color: rgb(98, 69, 13);
 }

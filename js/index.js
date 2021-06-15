@@ -23,7 +23,8 @@ $(() => {
     $('img').prop('draggable', false); /*firefox即便禁止了也可以拖动 */
     // $('img').draggable({ disabled: true }); 
     $('#what_is_it').fadeIn(normal_speed);
-    $('#what_is_it_qa').fadeIn(normal_speed);
+    // $('.what_is_it_qa').css({ display: 'none' });
+    $('.content1').fadeIn(normal_speed);
     $(window).scroll(set_banner_width).resize(set_banner_width);
     set_banner_width();
     $('#b_img1').slideDown(normal_speed);

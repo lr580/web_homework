@@ -21,8 +21,49 @@
 <body>
     <!-- <iframe src="nav.html" frameborder="0" width="100%" height="48px"></iframe> -->
     <div id="ifr"></div>
+    <div class="sidebar">
+        <div class="sidebar_main">
+            <div class="sidebar_barrier"></div>
+            <div class="sidebar_column sc1 sidebar_column_now" id="sc_all">全部</div>
+            <div class="sidebar_barrier"></div>
+            <div class="sidebar_column sc1" id="sc_alg">算法</div>
+            <div class="sidebar_barrier"></div>
+            <div class="sidebar_column sc2" id="sc_lan">
+                <div class="sc21">编程</div>
+                <div class="sc22">语言</div>
+            </div>
+            <div class="sidebar_barrier"></div>
+            <div class="sidebar_column sc2" id="sc_dev">
+                <div class="sc21">开发</div>
+                <div class="sc22">工具</div>
+            </div>
+            <div class="sidebar_barrier"></div>
+            <div class="sidebar_column sc2" id="sc_res">
+                <div class="sc21">资源</div>
+                <div class="sc22">分享</div>
+            </div>
+            <div class="sidebar_barrier"></div>
+            <div class="sidebar_column sc1" id="sc_oth">杂项</div>
+            <div class="sidebar_barrier"></div>
+        </div>
+    </div>
     <div class="post_main">
-        
+        <input type="text" placeholder="输入要搜索的帖子标题或正文内容" id="search_input">
+        <input type="button" value="搜索" id="search_button" onclick="search()">
+        <div id="search_feedback"></div>
+        <!-- <a href="javascript:alert(1)" id="search_button">搜索</a> -->
+        <div id="posts"></div>
+        <div class="page_button">
+            <div class="pb_list">
+                <div class="page_block" id="page_first_fa">
+                    <div class="page_first"></div>
+                </div>
+                <div class="page_block">1</div>
+                <div class="page_block">
+                    <div class="page_last"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
 </body>

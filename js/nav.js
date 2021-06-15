@@ -14,6 +14,7 @@ $(() => {
     //已经尝试过了frame, iframe, worker多线程等方法，能力有限，均未能框架间或跨页面的信息交互，所以采用这样的方法实现导航栏模板
 
     //ajax如果是用vscode的live插件则没有问题，否则会出现跨域问题，暂无非手动修改浏览器外的解决办法……
+
     if (ajax_on) {
         try {
             if (window.XMLHttpRequest) {
@@ -22,7 +23,7 @@ $(() => {
                 xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
             }
             xmlhttp.onreadystatechange = load_nav_html;
-            xmlhttp.open('GET', 'nav.txt', true);
+            xmlhttp.open('GET', 'nav.html', true);
             xmlhttp.send(); //.catch(error => console.log(error));
         } catch (err) {
             console.log('err from ajax make', err);
@@ -31,7 +32,23 @@ $(() => {
         console.log('waiting for updating');
     }
 
-
+    //无论是普通AJAX还是jQuery的ajax都暂时个人无法解决跨域问题的报错捕获
+    // try {
+    //     $.ajax({
+    //         type: 'get',
+    //         url: 'nav.html',
+    //         async: true,
+    //         success: (rel) => {
+    //             console.log(rel);
+    //             get_nav_html(rel);
+    //         },
+    //         error: (err) => {
+    //             console.log(err);
+    //         }
+    //     })
+    // } catch (err) {
+    //     console.log('err from ajax make', err);
+    // }
 });
 
 function load_nav_html() {
