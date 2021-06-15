@@ -1,0 +1,8 @@
+@charset "utf-8";
+.post_main {
+    height: 1000px;
+    background-color: rgb(247, 240, 228);
+    padding-left: 6%;
+    padding-right: 4%;
+    padding-top: 8px;
+}

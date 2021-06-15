@@ -22,11 +22,3 @@ img {
     -ms-user-select: text;
     user-select: text;
 }
-
-.post_main {
-    height: 1000px;
-    background-color: rgb(247, 240, 228);
-    padding-left: 6%;
-    padding-right: 4%;
-    padding-top: 8px;
-}

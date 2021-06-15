@@ -5,12 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星月的编程学习小站</title>
-    <link rel="stylesheet" href="css/index.css">
+    <title>星月编程学习小站</title>
+    <!--虽然不知道为什么但是如果名字是index.css不起作用，改成indexx.css就起作用了-->
+    <!-- <link rel="stylesheet" href="css/index.css"> -->
+    <link rel="stylesheet" href="css/indexx.css">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/footer.css">
     <script src="js/jquery.js"></script>
     <script src="js/index.js"></script>
     <script src="js/nav.js"></script>
+    <script src="js/footer.js"></script>
 </head>
 
 
@@ -19,8 +23,21 @@
     <!-- <iframe src="nav.html" frameborder="0" width="100%" height="48px" id="ifr"></iframe> -->
     <!--模拟iframe-->
     <div id="ifr">加载中……</div>
+    <div id="mains">
+        <!-- &nbsp; -->
+        <div class="banner" id="banner">
+            <img src="images/banner1.png" alt="bannner1" class="slide" id="b_img1">
+            <img src="images/banner2.png" alt="bannner2" class="slide" id="b_img2">
+            <img src="images/banner3.png" alt="bannner3" class="slide" id="b_img3">
+        </div>
+        <div class="slide_button_normal slide_button_now" id="b_but1" onclick="to_banner(1)"></div>
+        <div class="slide_button_normal" id="b_but2" onclick="to_banner(2)"></div>
+        <div class="slide_button_normal" id="b_but3" onclick="to_banner(3)"></div>
+        <div class="title1 allow_select" id="what_is_it">这是一个什么网站？</div>
+        <div class="content1 allow_select" id="what_is_it_qa">全合样上最断习即间许好，最是育深参区出长龙构，空都极群类厂秩论位。 体平质圆拉认改影，厂劳亲门公型素满，老求X员析6。 合周所没劳么太究，么系电划各离重象，局承厂级传构。 明算近级种常会心改名众矿周林结，此器走加材术清该置Z。 局传快提件公色省报线着，活容究改列计样育前，书研W是圆角加杜斗。 </div>
+    </div>
 
-    <h1>我日你先人</h1>
+    <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
 </body>
 
 </html>

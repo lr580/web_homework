@@ -1,5 +1,14 @@
 @charset "utf-8";
 * {
     margin: 0;
-    bottom: 0;
+    padding: 0;
+    /*因为写错成bottom:0导致过一些bugs……*/
+}
+
+#mains,
+.mains {
+    height: 100px;
+    background-color: wheat;
+    margin-bottom: 48px;
+    color: red;
 }

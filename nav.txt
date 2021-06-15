@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>导航栏页面(用于框架)</title>
+    <title>导航栏</title>
     <link rel="stylesheet" href="css/nav.css">
     <script src="js/jquery.js"></script>
-    <!-- <script src="js/nav.js"></script> -->
+    <script src="js/nav.js"></script>
 </head>
 
 <body>
     <div class="nav_main_bg">
         <div class="nav_main_cf" id="nav_cf">
-            <!--尝试实现滑窗悬停效果，实际体验不好，会遮住字体一半，没有简易解决办法-->
+            <!--尝试实现滑窗效果，实际体验不好，会遮住字体一半，没有简易解决办法-->
             <!-- <div class="nav_selei" id="selei"></div> -->
 
             <div class="nav_barrier"></div>
