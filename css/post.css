@@ -90,6 +90,13 @@ body {
     border-radius: 0px;
 }
 
+#search_list {
+    transition: all 0.3s;
+    width: 75%;
+    /* background-color: red; */
+    /*似乎search_list无法设置样式……*/
+}
+
 #search_button {
     margin-left: 16px;
     height: 36px;

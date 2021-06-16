@@ -22,3 +22,7 @@ img {
     -ms-user-select: text;
     user-select: text;
 }
+
+body {
+    background-color: rgb(247, 240, 228);
+}

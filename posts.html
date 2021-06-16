@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/general.css">
+    <script src="js/post_info.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/posts.js"></script>
     <script src="js/nav.js"></script>
@@ -48,18 +49,19 @@
         </div>
     </div>
     <div class="post_main">
-        <input type="text" placeholder="输入要搜索的帖子标题或正文内容" id="search_input">
-        <input type="button" value="搜索" id="search_button" onclick="search()">
+        <input type="text" placeholder="输入要搜索的帖子标题内容" id="search_input" list="search_list" maxlength="20">
+        <datalist id="search_list"></datalist>
+        <input type="button" value="搜索" id="search_button" onclick="show_search()">
         <div id="search_feedback"></div>
         <!-- <a href="javascript:alert(1)" id="search_button">搜索</a> -->
         <div id="posts"></div>
         <div class="page_button">
             <div class="pb_list">
-                <div class="page_block" id="page_first_fa">
+                <div class="page_block" id="page_first_fa" onclick="goto_page(1)">
                     <div class="page_first"></div>
                 </div>
-                <div class="page_block">1</div>
-                <div class="page_block">
+                <!-- <div class="page_block">1</div> -->
+                <div class="page_block" id="page_last_fa">
                     <div class="page_last"></div>
                 </div>
             </div>

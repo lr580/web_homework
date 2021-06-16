@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/post_common.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/post_info.js"></script>
+    <script src="js/post_common.js"></script>
+</head>
+
+<body>
+    <div id="ifr"></div>
+    <div class="post_frame">
+        <div class="post_normal allow_select">
+            在看这篇文章的时，我相信你已经掌握了“快速幂”算法。众所周知，快速幂是一种利用倍增思想将求幂运算的复杂度从O(n)降低到O(logn)的经典算法，其大致代码如下所示：
+        </div>
+        <!--因技术有限，无法渲染代码高亮-->
+        <ol class="post_code" id="code_0"></ol>
+        <div class="post_normal allow_select">
+            对于一般的求幂，这个算法已经非常优了。然而如果碰上了要求的指数非常大，以致于超过long long，达到了高精度，比如有上万位的时候，快速幂也显得无能为力了。
+        </div>
+        <div class="post_normal allow_select">
+            不过通常来说，求快速幂都会进行取模操作。如果模一个素数p的话，我们可以把复杂度进一步降低。
+        </div>
+        <div class="post_normal allow_select">
+            为此，我们首先需要引入欧拉定理和拓展欧拉定理：
+        </div>
+        <div class="post_img">
+            <img src="images/post0_0.png" alt="欧拉定理">
+        </div>
+        <div class="post_img">
+            <img src="images/post0_1.png" alt="拓展欧拉定理">
+        </div>
+        <div class="post_normal allow_select">
+            这两个定理的证明需要用到数论相关的理论，且证明步骤较为复杂，在这里略去。有兴趣的可以参考oi wiki。
+        </div>
+        <div class="post_normal allow_select">
+            上式的φ(m)是欧拉函数，返回一个整数，代表在整数区间[1,m]中与m互质的整数数目，求一个数的欧拉函数可以用如下的代码：
+        </div>
+        <ol class="post_code" id="code_1"></ol>
+        <div class="post_normal allow_select">
+            接下来，我们只需要直接套用快速幂和欧拉函数代码进行组合，即可用拓展欧拉定理求幂，由于指数变成了(b mod φ(m))+φ(m)，所以代码时间复杂度是O(log((b mod φ(m))+φ(m)))，b较大时，比O(log(b))大为优化。整体代码如下：
+        </div>
+        <ol class="post_code" id="code_2"></ol>
+        <div class="post_normal allow_select">
+            希望这篇帖子能够对读者有所帮助w~
+        </div>
+    </div>
+    <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
+</body>
+
+</html>
