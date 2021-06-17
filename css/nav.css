@@ -93,10 +93,13 @@
 
 .nav_to_top:hover a:hover {
     color: #000;
+    /* border: 0; */
+    /* outline: 0; */
     /*必须双重hover才起作用！*/
 }
 
 .nav_to_top a {
     color: black;
     text-decoration: none;
+    /* border: 0;  暂未解决：chorme hover时会自动加边框且没办法消去，firefox不会 */
 }

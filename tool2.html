@@ -57,21 +57,21 @@
         <div class="tool_res_title">
             抽取项目列表：
         </div>
-        <table class="tool_table_editable" border="1" cellspacing="0">
+        <table class="tool_table_editable" border="1" cellspacing="0" id="ran_item">
             <tr>
                 <th>序号</th>
                 <th>项目名称</th>
                 <th>权重</th>
                 <td>
-                    <div class="textbutton">添加一列</div>
+                    <div class="textbutton" onclick="append_rand_item('')">添加一列</div>
                 </td>
             </tr>
-            <!-- <tr>
+        </table>
+        <!-- <tr>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>删除该列</td>
             </tr> -->
-        </table>
         <div class="res_board_1">
             <div class="tool_res_title">处理结果：</div>
             <textarea name="lorem_res" id="lorem_res" cols="30" rows="22" class="res_text ti2em"></textarea>

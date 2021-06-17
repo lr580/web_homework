@@ -25,6 +25,20 @@ function get_and_fix_number(id, def = 1) {
     return val;
 }
 
+function get_and_fix_number_float(id, def = 0) {
+    let obj = $('#' + id);
+    let val = obj.val();
+    if (!val) {
+        obj.val('' + def);
+        val = def;
+    }
+    val = Math.max(parseFloat(obj.attr('min')),
+        Math.min(parseFloat(obj.attr('max')), Math.abs(parseFloat(val)))
+    );
+    obj.val(val);
+    return val;
+}
+
 //更新input type的最大值并产生作用
 function down_fix_number(id, max) {
     let obj = $('#' + id);
@@ -47,6 +61,10 @@ function up_fix_number(id, min, prot = false) {
 
 function get_number(id) {
     return parseInt($('#' + id).val());
+}
+
+function get_number_float(id) {
+    return parseFloat($('#' + id).val());
 }
 
 var full_height_board_1 = 0;
@@ -121,3 +139,8 @@ function shuffle(arr) {
 // function clip(obj) {
 
 // }
+
+//删除数组下标为i的元素
+function erase(arr, i) {
+    arr.splice(i, 1);
+}
