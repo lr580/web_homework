@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具 - 星月编程学习小站</title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/tool_common.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/tool_common.js"></script>
+    <script src="js/tool3.js"></script>
+</head>
+
+<body>
+    <div id="ifr">加载中……</div>
+    <div class="tool_main">
+        <div class="tool_title">
+            乱数假文生成器
+        </div>
+        <table class="tool_table_4c">
+            <tr>
+                <td>乱数假文语言：</td>
+                <td><select name="lorem_lan" id="lorem_lan" onclick="sele_lorem_lan()">
+                    <option value="ch">中文</option>
+                    <option value="en">英文</option>
+                </select></td>
+                <td id="lorem_num_text">汉字数量：</td>
+                <td><input type="number" min="1" max="99999" value="200" id="lorem_num" oninput="sele_lorem_num()" /></td>
+            </tr>
+            <tr>
+                <td>段落数：</td>
+                <td><input type="number" min="1" max="200" value="3" id="para_num" oninput="sele_para_num()" /></td>
+                <td id="word_max_text">单词最大长度：</td>
+                <td><input type="number" id="word_max" min="1" max="200" value="10" oninput="sele_word_max()"></td>
+            </tr>
+            <tr>
+                <td>句子最短长度：</td>
+                <td><input type="number" id="stn_min" min="1" max="200" value="3" oninput="sele_stn_min()"></td>
+                <td>句子最长长度：</td>
+                <td><input type="number" id="stn_max" min="3" max="200" value="15" oninput="sele_stn_max()"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;
+                    <!-- <div class="lit_bold">生成结果：</div> half与否不应该在同一个位置 -->
+                </td>
+                <td><input type="button" value="复制到剪贴板" onclick="lorem_clip(this)" id="clip_butt">
+                    <!-- <input type="text" id="clipboard" value="anything"> -->
+                </td>
+                <td class="aligncf"><input type="button" value="保存文本" onclick="lorem_save()"></td>
+                <td><input type="button" value="生成" onclick="lorem_generate()"></td>
+            </tr>
+        </table>
+        <div class="res_board_1">
+            <div class="tool_res_title">生成结果：</div>
+            <textarea name="lorem_res" id="lorem_res" cols="30" rows="22" class="res_text ti2em"></textarea>
+        </div>
+        <!-- <div class="fl">qwq</div> -->
+        <!-- <div class="fl">
+            <table class="tool_table_2c">
+                <tr>
+                    <td>123</td>
+                    <td>23</td>
+                </tr>
+            </table>
+        </div>-->
+        <a onfocus="this.blur();" download="lorem.txt" id="createInvote" class="hide">lorem</a>
+    </div>
+    <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
+</body>
+
+</html>

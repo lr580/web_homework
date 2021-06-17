@@ -1,0 +1,208 @@
+@charset "utf-8";
+.tool_main {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 6%;
+    margin-right: 8%;
+    /* background-color: wheat; */
+}
+
+.tool_title {
+    font-size: 32px;
+    font-weight: 900;
+    color: rgb(5, 41, 107);
+}
+
+.tool_input_text {
+    font-size: 18px;
+    color: rgb(14, 44, 100);
+}
+
+.tool_main input[type="text"],
+.tool_main input[type="number"] {
+    font-size: 20px;
+    line-height: 20px;
+    color: rgb(14, 44, 100);
+    height: 26px;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.tool_main input[type="number"] {
+    width: 80px;
+}
+
+.tool_main input[type="button"] {
+    font-size: 18px;
+    line-height: 18px;
+    color: rgb(14, 44, 100);
+    transition: all 0.3s;
+    /* height: 30px; */
+}
+
+.tool_main input[type="button"]:hover {
+    transition: all 0.3s;
+    /* height: 28.5px; */
+    /* background-color: rgb(226, 227, 228); */
+    /* border: 1px solid transparent; 手写貌似不大美观 */
+    /*不手写的话transition没有丝毫作用……*/
+}
+
+.tool_main input[type="file"] {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 18px;
+    line-height: 18px;
+    color: rgb(14, 44, 100);
+}
+
+.tool_main select {
+    font-size: 18px;
+    line-height: 24px;
+    height: 28px;
+    color: rgb(14, 44, 100);
+}
+
+.tool_main option {
+    /* color: red; */
+    color: rgb(14, 44, 100);
+    /*似乎对option的CSS不起效果*/
+}
+
+.tool_table_4c {
+    /* width: 90%; 这样只有半屏好看，全屏不美观 */
+    padding: 5px;
+    font-size: 20px;
+    color: rgb(14, 44, 100);
+    border-spacing: 6px;
+    /* margin: 20px; */
+}
+
+table.tool_table_4c tr td:nth-child(odd) {
+    text-align: right;
+    padding-right: 8px;
+    /* background-color: #fff; */
+    /*注意选择器的格式*/
+}
+
+table.tool_table_4c tr td:nth-child(3) {
+    padding-left: 30px;
+}
+
+.tool_table_editable {
+    padding: 8px;
+    font-size: 20px;
+    color: rgb(14, 44, 100);
+    border-spacing: 6px;
+    border-collapse: collapse;
+    border: 2px solid rgb(14, 44, 100);
+    margin: 6px;
+    margin-left: 40px;
+}
+
+table input[type="button"],
+table input[type="file"] {
+    cursor: pointer;
+}
+
+.tool_table_editable td,
+.tool_table_editable th {
+    padding: 6px;
+    /*这样的选择器格式也行*/
+}
+
+.tool_table_editable a {
+    text-decoration: none;
+}
+
+.textbutton {
+    cursor: pointer;
+    color: navy;
+    transition: all 0.3s;
+}
+
+.textbutton:hover {
+    transition: all 0.3s;
+    color: goldenrod;
+}
+
+.fl {
+    float: left;
+    /* background-color: #fff; */
+}
+
+.res_board_1 {
+    position: absolute;
+    left: 680px;
+    top: 120px;
+    width: 600px;
+    height: 540px;
+    /* background-color: wheat; */
+}
+
+.res_board_1[half] {
+    position: inherit;
+    left: 50px;
+}
+
+.tool_res_title {
+    font-size: 20px;
+    color: navy;
+    margin: 6px;
+    padding: 6px;
+    font-weight: 700;
+}
+
+.tool_help {
+    font-size: 16px;
+    color: rgb(14, 44, 100);
+    text-indent: 2em;
+    width: 580px;
+}
+
+.lit_bold {
+    font-weight: 700;
+    /* background-color: #fff; */
+}
+
+.res_text {
+    font-size: 20px;
+    margin-left: 12px;
+    color: rgb(14, 44, 100);
+    width: 90%;
+    resize: none;
+    /* padding: 6px; */
+}
+
+.aligncf {
+    position: relative;
+    left: -40px;
+    /*手动特判排版……*/
+    /* text-align: center; */
+    /* width: 300px; */
+}
+
+.alignlf {
+    position: relative;
+    left: 100px;
+}
+
+.alignlf2 {
+    position: relative;
+    left: -20px;
+}
+
+#clipboard {
+    display: none;
+    /*剪贴板*/
+}
+
+.hide {
+    display: none;
+}
+
+.ti2em {
+    text-indent: 2em;
+}

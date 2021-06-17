@@ -31,6 +31,6 @@ small .footer_text {
 }
 
 .footer_contain {
-    float: right;
-    margin-right: 6%;
+    float: left;
+    margin-left: 80px;
 }

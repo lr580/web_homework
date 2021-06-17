@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具 - 星月编程学习小站</title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/tool_common.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/tool_common.js"></script>
+    <script src="js/tool2.js"></script>
+</head>
+
+<body>
+    <div id="ifr">加载中……</div>
+    <div class="tool_main">
+        <div class="tool_title">
+            随机抽取器(制作中……)
+        </div>
+        <table class="tool_table_4c">
+            <tr>
+                <td>随机方式：</td>
+                <td><select name="ran_wmode" id="ran_wmode" onclick="sele_ran_wmode()">
+                    <option value="n">常规</option>
+                    <option value="w">加权</option>
+                </select></td>
+                <td>是否允许重复：</td>
+                <td><select name="ran_rep" id="ran_rep" onclick="sele_ran_rep()">
+                    <option value="y">是</option>
+                    <option value="n">否</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>抽取次数：</td>
+                <td><input type="number" min="1" max="99999" value="200" id="ran_num" oninput="sele_ran_num()" /></td>
+                <td>是否折叠结果：</td>
+                <td><select name="ran_fold" id="ran_fold" onclick="sele_ran_fold()">
+                    <option value="y">是</option>
+                    <option value="n">否</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="收起帮助" onclick="ran_help()" class="alignlf2" id="ran_help"></td>
+                <td><input type="button" value="随机抽取" onclick="ran_generate()"></td>
+                <td colspan="2" class="alignlf"><input type="file" accept=".txt" value="导入抽取项目" id="ran_input" onchange="ran_read(this.files)" id="ran_file"></td>
+            </tr>
+        </table>
+        <div class="tool_help">可以直接在下方表格编辑要抽取的内容，也可以通过文本导入，导入的文本仅支持纯文本格式。常规模式下，每一行代表一个待抽取项目(不统计空行)。加权模式下每一行以最后一个空格分开两部分，前半部分是待抽取项目，后半部分是权重(数字)。如果没有后半部分，默认权重为1。</div>
+        <div class="tool_help">当允许重复时，多次抽取的内容可能会出现重复；否则，抽取的内容会保证互不重复。不允许重复时，抽取次数必须不大于项目数目。</div>
+        <div class="tool_help">允许重复时，如果选择折叠结果，那么所有相同的项目会合并显示；否则会按照抽取到的时间先后显示。</div>
+        <div class="tool_res_title">
+            抽取项目列表：
+        </div>
+        <table class="tool_table_editable" border="1" cellspacing="0">
+            <tr>
+                <th>序号</th>
+                <th>项目名称</th>
+                <th>权重</th>
+                <td>
+                    <div class="textbutton">添加一列</div>
+                </td>
+            </tr>
+            <!-- <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>删除该列</td>
+            </tr> -->
+        </table>
+        <div class="res_board_1">
+            <div class="tool_res_title">处理结果：</div>
+            <textarea name="lorem_res" id="lorem_res" cols="30" rows="22" class="res_text ti2em"></textarea>
+        </div>
+        <a onfocus="this.blur();" download="lorem.txt" id="createInvote" class="hide">lorem</a>
+    </div>
+    <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
+</body>
+
+</html>

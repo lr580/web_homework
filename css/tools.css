@@ -1,0 +1,49 @@
+@charset "utf-8";
+.tool_frame {
+    /* background-color: wheat; */
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 6%;
+    margin-right: 8%;
+    height: 680px;
+}
+
+.tool_board {
+    background-color: rgb(251, 251, 219);
+    margin-top: 30px;
+    display: none;
+    transition: all 0.3s;
+    border: 1px solid rgb(15, 13, 29);
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.tool_board:hover {
+    transition: all 0.3s;
+    background-color: rgb(253, 253, 193);
+}
+
+.tool_name {
+    font-weight: 700;
+    font-size: 22px;
+    color: navy;
+    padding-left: 35px;
+    padding-bottom: 8px;
+    padding-top: 10px;
+}
+
+.tool_hr {
+    position: relative;
+    left: 35px;
+    width: 90%;
+}
+
+.tool_abbr {
+    text-indent: 2em;
+    font-size: 18px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 24px;
+    padding-right: 5%;
+    color: rgb(14, 44, 100);
+}

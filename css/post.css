@@ -39,7 +39,7 @@ body {
 .sidebar_column {
     height: 64px;
     font-size: 18px;
-    font-weight: 900;
+    font-weight: 700;
     color: rgb(2, 9, 22);
     /* background-color: darkgoldenrod; */
     cursor: pointer;
@@ -82,6 +82,10 @@ body {
     border-radius: 12px;
     width: 75%;
     text-indent: 1em;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 #search_input:focus {

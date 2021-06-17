@@ -49,7 +49,44 @@ $(() => {
     // } catch (err) {
     //     console.log('err from ajax make', err);
     // }
+
+    if (1 || location.href.indexOf('posts') == -1 && location.href.indexOf('post') != -1) {
+        // console.log('ac');
+        $(window).scroll(set_goto_top).resize(set_goto_top);
+        set_goto_top();
+    }
+
 });
+
+var goto_top_displaying = false;
+var goto_top_transisitioning = false;
+
+function set_goto_top() {
+    if (goto_top_transisitioning) {
+        return;
+    }
+    let scroll_top = document.documentElement.scrollTop || document.body.scrollTop;
+    let window_height = document.documentElement.clientHeight;
+    // console.log(scroll_top, window_height);
+    if (scroll_top > window_height && !goto_top_displaying) {
+        goto_top_displaying = true;
+        goto_top_transisitioning = true;
+        $('.nav_to_top').fadeIn(300);
+        setTimeout(() => {
+            goto_top_transisitioning = false;
+        }, 300);
+    }
+    if (scroll_top <= window_height && goto_top_displaying) {
+        // console.log(scroll_top, window_height);
+        goto_top_displaying = false;
+        $('.nav_to_top').fadeOut(300);
+        //因为紧接着又写了一个fadeIn(ctrl+v忘记删掉)而导致过bugs，已修复
+        goto_top_transisitioning = true;
+        setTimeout(() => {
+            goto_top_transisitioning = false;
+        }, 300);
+    }
+}
 
 function load_nav_html() {
     try {
@@ -73,6 +110,8 @@ function get_nav_html(htmlcode) {
     $('#ifr')[0].innerHTML = body_innerHTML;
     build_href('index');
     build_href('posts');
+    build_href('tools');
+    build_href('about');
 }
 
 // var href_info;
@@ -88,7 +127,8 @@ function build_href(htm) {
     let new_href = location.href;
     let fix_pos = Math.max(0, new_href.lastIndexOf('/'));
     let now_htm_name = new_href.substr(fix_pos + 1).split('.')[0];
-    if (now_htm_name == htm) {
+    // console.log(htm, now_htm_name);
+    if (now_htm_name == htm || htm == 'posts' && -1 != now_htm_name.indexOf('post') || htm == 'tools' && -1 != now_htm_name.indexOf('tool')) {
         obj.attr('now', htm);
     }
     // let obj = document.getElementBdyId(htm);

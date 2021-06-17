@@ -5,11 +5,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>工具 - 星月编程学习小站</title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/tools.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/tools.js"></script>
 </head>
 
 <body>
-
+    <div id="ifr">加载中……</div>
+    <div class="tool_frame">
+        <div class="tool_board" id="tool0">
+            <div class="tool_name">多功能计算器</div>
+            <hr class="tool_hr">
+            <div class="tool_abbr">这是一个可以进行常规运算以及各种脚本运行，并且支持多种内置计算，如位运算和进制转换、最大公因数、排列组合、卡特兰数、三角函数、逆元等常用运算的在线多功能计算工具。
+            </div>
+        </div>
+        <div class="tool_board" id="tool1">
+            <div class="tool_name">文本处理器</div>
+            <hr class="tool_hr">
+            <div class="tool_abbr">
+                这是一个字符串文本处理的在线工具，支持字数统计、段落统计、字符和单词频次统计、搜索和批量替换。所有处理均支持普通文本处理和正则表达式处理，并且内置了实用的正则表达式规则可供使用。</div>
+        </div>
+        <div class="tool_board" id="tool2">
+            <div class="tool_name">随机抽取器</div>
+            <hr class="tool_hr">
+            <div class="tool_abbr">这是一个可以模拟随机抽取的在线工具，可以进行一次或多次不同方式的随机抽取，支持抽取项重复或不重复，也支持等概率抽取和加权抽取。抽取文本支持导入，抽取结果支持导出。
+            </div>
+        </div>
+        <div class="tool_board" id="tool3">
+            <div class="tool_name">乱数假文生成器</div>
+            <hr class="tool_hr">
+            <div class="tool_abbr">这个在线工具可以生成一篇随机文本，文本内容支持中英双语，弥补了Emmet语法只可以生成lorem英文乱数假文的不足。支持自定义文本长度、文本内容、句子和段落长度。支持结果文本导出。
+            </div>
+        </div>
+        <!-- <div class="tool_board"><div class="tool_name" id="tool5">随机密码生成器/加密解密工具</div>
+            <hr class="tool_hr">
+            <div class="tool_abbr">暂时打算放弃第五个工具的制作</div>
+        </div> -->
+    </div>
+    <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
 </body>
 
 </html>

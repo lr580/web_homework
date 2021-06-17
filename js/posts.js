@@ -215,11 +215,14 @@ function load_post(ac_posts) {
     if (!now_type || now_type == 'sc_all') {
         cnt_pid = ac_posts.length;
     } else {
+        let ae_posts = [];
         for (let i = 0; i < ac_posts.length; ++i) {
             if (ac_posts[i].type == now_type) {
+                ae_posts.push(ac_posts[i]);
                 ++cnt_pid;
             }
         }
+        ac_posts = ae_posts;
     }
     page_num = Math.max(1, Math.ceil(cnt_pid / post_nums));
     // console.log(page_num);
