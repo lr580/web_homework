@@ -2,8 +2,9 @@
 $(() => {
     get_pid();
     build_common();
-    // code_txt_to_js_string('temp.cpp');
+    // code_txt_to_js_string('ts.py');
     render_all_code();
+    set_footer_position();
 });
 
 // import { posts_abbr } from "./post_info.js";

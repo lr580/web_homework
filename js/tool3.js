@@ -102,6 +102,7 @@ function lorem_clip(e) {
     // target2.select();
     let obj2 = $('#clip_butt');
     obj2.val('复制文本成功');
+    target.blur();
     setTimeout(() => {
         obj2.val('复制到剪贴板');
     }, 1500);
@@ -168,7 +169,9 @@ function lorem_paragraph(lan, min, max, wmx, len) {
     //     res[reslen - 1] = '。'; //修改小的语法问题……
     // } 似乎因为一些情况会出编码相关的Unicode辅助平面bugs，所以删去该细节
 
-    return res; //行首空格由CSS修饰，这里不需要多余处理，这样保存的文本也更好
+    return '    ' + res;
+    //行首空格由CSS修饰，这里不需要多余处理，这样保存的文本也更好
+    //最新状况：突然发现不知道为什么神奇地只有首行了……所以还是要这么做
 }
 
 function lorem_main() {

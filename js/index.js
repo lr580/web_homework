@@ -1,8 +1,11 @@
 "use strict";
 var banner_width = 1000;
-const normal_speed = 800;
-const banner_button_dif = -100;
+const normal_speed = 500;
+const slow_speed = 800;
+const banner_button_dif = 45;
+// const banner_button_dif = -100;
 const banner_button_edif = 35;
+const banner_cycle = 5000;
 var slide_event;
 var now_slide_id = 1;
 var slide_moving = false; //移动中禁点
@@ -25,13 +28,16 @@ $(() => {
     $('#what_is_it').fadeIn(normal_speed);
     // $('.what_is_it_qa').css({ display: 'none' });
     $('.content1').fadeIn(normal_speed);
+    $('.title2').fadeIn(normal_speed);
+    $('.title0').fadeIn(normal_speed);
     $(window).scroll(set_banner_width).resize(set_banner_width);
-    set_banner_width();
-    $('#b_img1').slideDown(normal_speed);
-    slide_event = setInterval(next_banner, 5000);
+
+    $('#b_img1').slideDown(slow_speed);
+    slide_event = setInterval(next_banner, banner_cycle);
     // $('img').bind('click', function() {
     //     console.log($(this).attr('id'));
     // })
+    set_banner_width();
 });
 
 function set_banner_width() {
@@ -52,8 +58,8 @@ function switch_banner(from, to) {
     slide_moving = true;
     let obj_from = i_to_banner_obj(from);
     let obj_to = i_to_banner_obj(to);
-    obj_from.slideUp(normal_speed);
-    obj_to.slideDown(normal_speed);
+    obj_from.slideUp(slow_speed);
+    obj_to.slideDown(slow_speed);
     let obj_but_from = i_to_banbut_obj(from);
     let obj_but_to = i_to_banbut_obj(to);
     obj_but_from.removeClass('slide_button_now');
@@ -65,13 +71,14 @@ function switch_banner(from, to) {
     // }, 1000); 修复了一个愚蠢的bugs
     setTimeout(() => {
         slide_moving = false;
-    }, normal_speed);
+    }, slow_speed);
 }
 
 function reposition_banner_button() {
     for (let i = 1; i <= 3; ++i) {
         let obj = i_to_banbut_obj(i);
-        obj.css({ left: banner_width + banner_button_dif + i * banner_button_edif + 'px' })
+        obj.css({ left: banner_button_dif + i * banner_button_edif + 'px' })
+            // obj.css({ left: banner_width + banner_button_dif + i * banner_button_edif + 'px' })
     }
 }
 
@@ -88,5 +95,5 @@ function to_banner(to) {
     switch_banner(now_slide_id, to);
     now_slide_id = to;
     clearInterval(slide_event); /*重新计时 */
-    slide_event = setInterval(next_banner, 5000);
+    slide_event = setInterval(next_banner, banner_cycle);
 }

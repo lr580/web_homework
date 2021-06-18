@@ -1,0 +1,143 @@
+@charset "utf-8";
+#star {
+    height: 150px;
+    /* background-color: #fff; */
+}
+
+.fix1 {
+    position: relative;
+    /* top: 230px; */
+    top: 130px;
+    right: 20px;
+}
+
+.fix2 {
+    position: relative;
+    left: 60%;
+    top: 300px;
+    z-index: -1;
+}
+
+.stars {
+    width: 32px;
+    height: 32px;
+}
+
+@keyframes ssm1 {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.ss1 {
+    animation-name: ssm1;
+    animation-duration: 5s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+    position: relative;
+    right: 70%;
+    top: 60%;
+}
+
+.ss4 {
+    animation-name: ssm1;
+    animation-duration: 7s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+    /* transition: rotate(45deg);  似乎实现不了？…… */
+    position: relative;
+    right: 85%;
+    top: 70%;
+}
+
+@keyframes ssm2 {
+    0% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.ss2 {
+    animation-name: ssm2;
+    animation-duration: 4s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+    /* transition: rotateX(45deg); */
+    position: relative;
+    right: 60%;
+    /* background-color: red; */
+    top: 80%;
+}
+
+.ss5 {
+    animation-name: ssm2;
+    animation-duration: 10s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+    position: relative;
+    right: 40%;
+    top: 65%;
+}
+
+@keyframes ssm3 {
+    0% {
+        opacity: 1;
+    }
+    35% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+    }
+    45% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.ss3 {
+    animation-name: ssm3;
+    animation-duration: 7s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+    position: relative;
+    right: 25%;
+    top: 30%;
+}
+
+.ss6 {
+    animation-name: ssm3;
+    animation-duration: 4s;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+    position: relative;
+    right: 15%;
+    top: 60%;
+}
+
+.moon {
+    height: 48px;
+    width: 48px;
+    position: relative;
+    right: 2%;
+    top: 15%;
+}

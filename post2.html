@@ -20,7 +20,48 @@
 <body>
     <div id="ifr"></div>
     <div class="post_frame">
+        <!-- <div class="post_subtitle allow_select" id="what_is_nb_function">
 
+        </div> -->
+        <div class="post_normal allow_select">什么是高阶函数？</div>
+        <div class="post_normal allow_select">使用一个或多个函数作为参数的函数称为 <strong>高阶函数</strong>。我们熟知的使用了函数作为参数的函数有min/max（使用了默认参数key，是一个函数）。例如：</div>
+        <ol class="post_code" id="code_16"></ol>
+        <div class="post_normal allow_select">当然我们也可以自己定义一个使用参数作为参数的函数，例如下面的示例代码定义了一个高阶函数：</div>
+        <ol class="post_code" id="code_17"></ol>
+        <div class="post_normal allow_select">在上面的例子中，f是一个高阶函数，第二个参数是一个函数，函数f根据函数参数的不同，调用不同的函数来对2x和x+1进行处理，h是一系列函数的抽象，g1和g2是具体的h函数。</div>
+        <div class="post_normal allow_select">在Python标准库和内建函数里，提供了几个非常实用的高阶函数：
+            <a href="#map"><strong>map</strong></a> 、
+            <a href="#reduce"><strong>reduce</strong></a> 、
+            <a href="#filter"><strong>filter</strong></a> 、
+            <a href="#sorted"><strong>sorted</strong></a> ，本贴会详细分析一下这四个高阶函数。
+        </div>
+        <div class="post_subtitle allow_select" id="map">map</div>
+        <div class="post_normal allow_select">map是内建函数。map是一个有两个参数的函数，第一个参数是函数参数func，第二个参数是可迭代数据类型。<strong>可迭代数据类型</strong> ，即Iterable，是一切可以使用for进行迭代的数据类型，例如我们熟知的列表、字典、集合都是可迭代数据类型，它们都可以作为该函数的第二个参数。</div>
+        <div class="post_normal allow_select">map函数的作用是对可迭代数据类型的每一个元素x分别执行func(x)，将执行后的返回值依次放进一个新的可迭代数据类型然后返回一个map实例，对该实例进行相应的类型转换可以得到可迭代数据类型。执行map函数之后，传入的可迭代数据类型参数本身不会被改变。简单地说，就是返回对可迭代数据类型的每个元素进行func操作后的结果。来看一些例子：</div>
+        <ol class="post_code" id="code_18"></ol>
+        <div class="post_normal allow_select">事实上，我们还可以用 <strong>匿名函数</strong> 对代码进行简化，匿名函数一般适用于只使用一次的函数，对于这样的函数，可以不定义具体的函数名，而直接用匿名函数表达式lambda定义其具体的操作，语法如下：</div>
+        <ol class="post_code" id="code_19"></ol>
+        <div class="post_normal allow_select">它等效于下面的语句：</div>
+        <ol class="post_code" id="code_20"></ol>
+        <div class="post_normal allow_select">lambda表达式果然非常地简单，对比之下，它将函数定义(等价语句的前两行)和调用函数参数(等价语句的第三行)直接合成了一行！我们可以用匿名函数简化上面的代码：</div>
+        <ol class="post_code" id="code_21"></ol>
+        <div class="post_normal allow_select">当然了，匿名函数可以传入的参数不仅仅是一个，也可以是0到任意多个，返回的值也跟一般的函数一样没有限制。所以，lambda函数是单行函数作函数参数的极佳替代品。来看更多例子：</div>
+        <ol class="post_code" id="code_22"></ol>
+        <div class="post_normal allow_select">上面的例子展示了匿名函数有零个参数(用了全局变量)和两个参数的例子。我们接着往下看。</div>
+        <div class="post_subtitle allow_select" id="reduce">reduce</div>
+        <div class="post_normal allow_select">reduce不是内建函数，而是标准库函数，它来自标准库functools，这意味着，你在使用之前需要使用import语句加载它。它的参数列表和返回值与map一致，同样iterable自身不会被该函数改变，但它作用的机理不同，它作用的方式是：首先对前两个元素执行func，接着将结果作为func的左参数，第三个元素作为右参数继续执行，之后对第四、第五个……同样操作，全部共执行len(iterable)-1次func。</div>
+        <div class="post_normal allow_select">例如，对于一个四元素iterable执行reduce(f, [x1,x2,x3,x4])，效果等效于f(f(f(x1,x2),x3),x4)。</div>
+        <div class="post_normal allow_select">由于它作用机理的缘故，map的函数参数是一元函数，而reduce的函数参数必须是二元函数。这点需要特别注意。并且由于reduce的机制特性，它特别适合用于处理字符串，我们来看几个例子：</div>
+        <ol class="post_code" id="code_23"></ol>
+        <div class="post_normal allow_select">可以从中看到代码量相较使用for而言简便了不少，这也体现了Python简洁的语法特性。</div>
+        <div class="post_subtitle allow_select" id="filter">filter</div>
+        <div class="post_normal allow_select">filter是内建函数。参数和返回值同map，同样不会改变iterable自身。要求func是一元的返回布尔值的函数，当布尔值为真时，该元素会出现按原来的相对顺序在返回值里，否则该元素将会被过滤掉，不会出现在返回值里。这个函数非常好理解，来看几个例子便可：</div>
+        <div class="post_italic allow_select">注意filter是单词filt(过滤)的合成词，不要拼写错误成fliter。</div>
+        <ol class="post_code" id="code_24"></ol>
+        <div class="post_subtitle allow_select" id="sorted">sorted</div>
+        <div class="post_normal allow_select">sorted也是内建函数，虽然它不会改变传入的iterable，但它的参数、返回值与上面三个高阶函数不再一样。sorted第一个参数是iterable，第二个参数是默认参数key，传入函数参数func，可以不传，那么默认升序排序(数值或ASCII码顺序)，第三个参数是默认参数reverse，是布尔值，代表是否排序完毕后进行逆序，为true进行。默认是false。函数返回值类型是列表。来看几个例子：</div>
+        <ol class="post_code" id="code_25"></ol>
+        <div class="post_normal allow_select">以上就是本篇帖子的全部内容了，希望能够对读者理解和使用Python的高阶函数有所帮助。如有错误，欢迎指出~</div>
     </div>
     <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
 </body>

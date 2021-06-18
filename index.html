@@ -11,10 +11,12 @@
     <link rel="stylesheet" href="css/indexx.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/star_canvas.css">
     <script src="js/jquery.js"></script>
     <script src="js/index.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/footer.js"></script>
+    <script src="js/star_canvas.js"></script>
 </head>
 
 
@@ -25,6 +27,7 @@
     <div id="ifr">加载中……</div>
     <div id="mains">
         <!-- &nbsp; -->
+        <div class="title0">星月编程学习小站</div>
         <div class="banner" id="banner">
             <img src="images/banner1.png" alt="bannner1" class="slide" id="b_img1">
             <img src="images/banner2.png" alt="bannner2" class="slide" id="b_img2">
@@ -35,10 +38,26 @@
         <div class="slide_button_normal" id="b_but3" onclick="to_banner(3)"></div>
         <div class="title1 allow_select" id="what_is_it">这是一个什么网站？</div>
         <div class="content1 allow_select" id="what_is_it_qa1">这是一个提供编程学习相关文章分享和编程实用工具在线使用的网站。</div>
-        <div class="content1 allow_select" id="what_is_it_qa2">本网站提供了若干精选的个人编程学习相关的心得体会和相关学习笔记、学习资源的分享，范围囊括算法与数据结构、C/C++、Python等编程语言、git等开发工具、精选电子书、电子课程资源分享等丰富的文章帖子，均为个人在学习过程中记录下来的实践体会，希望对各位有所帮助！</div>
-        <div class="content1 allow_select" id="what_is_it_qa3">此外，这里还提供了一些较为实用的编程在线小工具，包括……</div>
+        <div class="content1 allow_select" id="what_is_it_qa2">本网站提供了若干精选的个人编程学习相关的心得体会和相关学习笔记、学习资源的分享，范围囊括算法与数据结构、C/C++、Python等编程语言、git等开发工具、精选电子书、电子课程资源分享等丰富的文章帖子，均为个人在学习过程中记录下来的实践体会。</div>
+        <div class="content1 allow_select" id="what_is_it_qa3">此外，这里还提供了一些较为实用的编程在线小工具，包括多功能计算器、文本处理器、随机抽取器和乱数假文生成器。这些工具在进行编程时也许可以提供非常便利的作用。</div>
+        <div class="index_left">
+            <div class="title2">文章推荐：</div>
+            <ul class="index_list">
+                <li><a href="post1.html">C语言输入流浅析</a></li>
+                <li><a href="post0.html">拓展欧拉定理：从快速幂到疾速幂</a></li>
+                <li><a href="post2.html">Python高阶函数浅析</a></li>
+            </ul>
+        </div>
+        <div class="index_right">
+            <div class="title2">工具推荐：</div>
+            <ul class="index_list">
+                <li><a href="tool0.html">多功能计算器</a></li>
+                <li><a href="tool1.html">文本处理器</a></li>
+                <li><a href="tool2.html">随机抽取器</a></li>
+            </ul>
+        </div>
+        <div id="star" class="fix1"></div>
     </div>
-
     <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
 </body>
 

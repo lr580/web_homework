@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工具 - 星月编程学习小站</title>
+    <title>随机抽取器 - 星月编程学习小站</title>
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/general.css">
@@ -21,14 +21,14 @@
     <div id="ifr">加载中……</div>
     <div class="tool_main">
         <div class="tool_title">
-            随机抽取器(制作中……)
+            随机抽取器
         </div>
         <table class="tool_table_4c">
             <tr>
                 <td>随机方式：</td>
                 <td><select name="ran_wmode" id="ran_wmode" onclick="sele_ran_wmode()">
                     <option value="n">常规</option>
-                    <option value="w">加权</option>
+                    <option value="w" selected>加权</option>
                 </select></td>
                 <td>是否允许重复：</td>
                 <td><select name="ran_rep" id="ran_rep" onclick="sele_ran_rep()">
@@ -39,7 +39,7 @@
             <tr>
                 <td>抽取次数：</td>
                 <td><input type="number" min="1" max="99999" value="200" id="ran_num" oninput="sele_ran_num()" /></td>
-                <td>是否折叠结果：</td>
+                <td id="ran_fold_text">是否折叠结果：</td>
                 <td><select name="ran_fold" id="ran_fold" onclick="sele_ran_fold()">
                     <option value="y">是</option>
                     <option value="n">否</option>
@@ -51,19 +51,23 @@
                 <td colspan="2" class="alignlf"><input type="file" accept=".txt" value="导入抽取项目" id="ran_input" onchange="ran_read(this.files)" id="ran_file"></td>
             </tr>
         </table>
-        <div class="tool_help">可以直接在下方表格编辑要抽取的内容，也可以通过文本导入，导入的文本仅支持纯文本格式。常规模式下，每一行代表一个待抽取项目(不统计空行)。加权模式下每一行以最后一个空格分开两部分，前半部分是待抽取项目，后半部分是权重(数字)。如果没有后半部分，默认权重为1。</div>
+        <div class="tool_help">可以直接在下方抽取项目列表直接添加或编辑要抽取的内容，也可以通过文本导入，导入的文本仅支持纯文本格式。常规模式下，每一行代表一个待抽取项目(不统计空行)。加权模式下每一行以最后一个空格分开两部分，前半部分是待抽取项目，后半部分是权重(数字)。如果没有后半部分，默认权重为1。</div>
+        <div class="tool_help">抽取项目列表中的权重仅在随机方式为加权时起作用，如果随机方式为常规，那么权重全部都会认为是1，而不是抽取项目列表里的具体值。</div>
         <div class="tool_help">当允许重复时，多次抽取的内容可能会出现重复；否则，抽取的内容会保证互不重复。不允许重复时，抽取次数必须不大于项目数目。</div>
-        <div class="tool_help">允许重复时，如果选择折叠结果，那么所有相同的项目会合并显示；否则会按照抽取到的时间先后显示。</div>
+        <div class="tool_help">允许重复时，如果选择折叠结果，那么所有相同的项目会合并显示并按降序显示；否则会按照抽取到的时间先后显示。</div>
         <div class="tool_res_title">
             抽取项目列表：
         </div>
         <table class="tool_table_editable" border="1" cellspacing="0" id="ran_item">
             <tr>
+                <!-- <colgroup></colgroup> -->
+                <!-- <colgroup></colgroup> -->
+                <!-- <colgroup class="ts" id="wcx"></colgroup> -->
                 <th>序号</th>
                 <th>项目名称</th>
-                <th>权重</th>
+                <th id="wwx">权重</th>
                 <td>
-                    <div class="textbutton" onclick="append_rand_item('')">添加一列</div>
+                    <div class="textbutton" onclick="append_rand_item('')">添加一项</div>
                 </td>
             </tr>
         </table>
@@ -72,11 +76,16 @@
                 <td>&nbsp;</td>
                 <td>删除该列</td>
             </tr> -->
-        <div class="res_board_1">
-            <div class="tool_res_title">处理结果：</div>
-            <textarea name="lorem_res" id="lorem_res" cols="30" rows="22" class="res_text ti2em"></textarea>
+        <div class="res_board_1 pad_bottom">
+            <div class="tool_res_title">
+                处理结果：
+                <input type="button" id="clipbut" onclick="clip('clipbut','ran_res')" value="复制到剪贴板">
+                <input type="button" onclick="save($('#ran_res').val())" value="保存">
+
+            </div>
+            <textarea name="ran_res" id="ran_res" cols="30" rows="22" class="res_text allow_select"></textarea>
         </div>
-        <a onfocus="this.blur();" download="lorem.txt" id="createInvote" class="hide">lorem</a>
+        <a onfocus="this.blur();" download="random.txt" id="createInvote" class="hide">random</a>
     </div>
     <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
 </body>

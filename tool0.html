@@ -5,17 +5,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工具 - 星月编程学习小站</title>
+    <title>多功能计算器 - 星月编程学习小站</title>
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/tool_common.css">
     <script src="js/jquery.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/footer.js"></script>
+    <script src="js/tool_common.js"></script>
+    <script src="js/tool0.js"></script>
 </head>
 
 <body>
     <div id="ifr">加载中……</div>
+    <div class="tool_main">
+        <div class="tool_title extra_mb_1">
+            多功能计算器
+            <input type="button" value="收起帮助" onclick="help_click();" id="help">
+        </div>
+        <!-- <table class="tool_table_4c">
+            <tr>
+                <td><input type="button" value="收起帮助" onclick="help_click();" id="help">
+                </td>
+                <td><input type="button" onclick="cal();" value="计算" class="alignrf"></td>
+            </tr>
+        </table> -->
+        <div class="tool_help">为了能够进行更加复杂的计算，例如循环、判断乃至递归，本计算器将待计算的内容视为JS脚本处理，使用JS语法执行用户输入的脚本，可以灵活执行所有JS语句，例如四则运算、Math库函数。除此之外，考虑到复杂的计算时如果输出每一步的计算结果，结果文本将会时分冗余，所以本计算器提供内置函数print(具体见提供的函数接口)，专门用于输出内容到结果框。</div>
+        <div class="tool_help">由于支持JS所有语法，所以本计算器自带所有简单或复杂的算数和逻辑运算，包括四则运算、位运算、三角函数计算、随机数等。此外，本计算器还内置了一些常用的与算法等相关的函数提供调用。包括求最大公因数、排列组合、卡特兰数、逆元等。具体使用方法见下方列表。点击列表项后会在处理脚本尾部处添加一段示例使用代码。</div>
+        <div class="tool_help">由于JS自身的限制，所有计算过程的绝对值取值范围不得大于2147483647。
+            <!--其实是自己暂时没手写高精度类，代码量太大了，动辄几百行-->
+        </div>
+        <div class="tool_res_title">
+            提供函数：
+        </div>
+        <div class="tool_scroll_frame_2 regex_frame_width">
+            <table class="tool_table_editable regex_table_width" border="1" cellspacing="0" id="calfx_item">
+                <tr>
+                    <th>函数名</th>
+                    <th>接口描述</th>
+                </tr>
+            </table>
+        </div>
+        <div class="res_board_1 pad_bottom extra_height_2">
+            <div class="tool_res_title">处理脚本：<input type="button" onclick="$('#cal_input').val('')" value="清空"><input type="button" onclick="_cal();" value="计算"></div>
+            <textarea name="cal_input" id="cal_input" cols="30" rows="10" class="res_text allow_select p2" oninput="save_memory()"></textarea>
+            <div class="tool_res_title">
+                处理结果：
+                <input type="button" id="clipbut" onclick="clip('clipbut','cal_res')" value="复制到剪贴板">
+                <input type="button" onclick="save($('#cal_res').val())" value="保存">
+            </div>
+            <textarea name="cal_res" id="cal_res" cols="30" rows="10" class="res_text allow_select p2"></textarea>
+        </div>
+        <a onfocus="this.blur();" download="cal.txt" id="createInvote" class="hide">cal</a>
+    </div>
     <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
 </body>
 

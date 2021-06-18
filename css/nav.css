@@ -8,6 +8,7 @@
     background-color: rgb(188, 220, 246);
     height: 48px;
     width: 100%;
+    overflow: hidden;
 }
 
 .nav_main_cf {

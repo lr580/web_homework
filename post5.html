@@ -20,7 +20,44 @@
 <body>
     <div id="ifr"></div>
     <div class="post_frame">
-
+        <div class="post_italic allow_select">个人所用环境为：双系统Window10, Ubuntu20.10，使用联想拯救者电脑游戏本。自己也是一个Linux系统初学者，对这方面没有造诣，如有错误和不严谨之处，还望读者指教和海涵。</div>
+        <div class="post_subsubtitle allow_select">
+            问题1：无法在C盘和D盘进行写操作
+        </div>
+        <div class="post_normal allow_select">解决办法：尝试关闭window的快速启动，在window下操作，具体方法每台计算机都不一样，百度</div>
+        <div class="post_subsubtitle allow_select">
+            问题2：没有ubuntu启动项
+        </div>
+        <div class="post_normal allow_select">window自动更新后产生的问题</div>
+        <div class="post_normal allow_select">解决办法：启动bios(本系统开机时FN+F2)，然后看到按钮，中间那个，选到ubuntu，然后关闭bios重启电脑即可</div>
+        <div class="post_subsubtitle allow_select">
+            问题3：微信无法启动
+        </div>
+        <div class="post_normal allow_select">注：Linux没有微信软件，微信是使用wine安装的</div>
+        <div class="post_normal allow_select">解决办法：让隐藏文件可见，用户文件夹(~)下，找到Wechat字样和.开头的文件夹，搬走，启动，(再搬回去)(不搬回去也行，影响不大)，后来再次初始化的时候选一样的路径即可</div>
+        <div class="post_subsubtitle allow_select">
+            问题4：typora没有菜单栏
+        </div>
+        <div class="post_normal allow_select">注：typora是使用snap安装的</div>
+        <div class="post_normal allow_select">解决办法：这是snap的天然缺陷。不要使用snap安装，使用apt重新安装即可</div>
+        <div class="post_subsubtitle allow_select">
+            问题5：typora的ctrl+5快捷键失效
+        </div>
+        <div class="post_normal allow_select">注：ubuntu安装了fcitx</div>
+        <div class="post_normal allow_select">与fcitx快捷键冲突，点击fcitx，配置-全局配置-显示高级选项-快捷键，找到重新载入配置，换掉或删掉即可</div>
+        <div class="post_subsubtitle allow_select">
+            问题6：右击菜单没有新建文本文档txt
+        </div>
+        <div class="post_normal allow_select">直接在用户文件夹(路径`~`)里的模板(有的不叫这个名字，叫template)文件夹处加即可，可能需要管理员权限</div>
+        <div class="post_subsubtitle allow_select">
+            问题7：vscode无法使用background-cover插件
+        </div>
+        <div class="post_normal allow_select">输入下列指令即可：</div>
+        <ul class="post_list allow_select">
+            <li>sudo chown -R $(whoami) /usr/share/code</li>
+        </ul>
+        <div class="post_normal allow_select">&nbsp;</div>
+        <div class="post_normal allow_select">本文仅用于记录个人学习和使用linux系统的心得体会，欢迎交流~</div>
     </div>
     <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
 </body>

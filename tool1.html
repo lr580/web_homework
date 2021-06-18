@@ -5,17 +5,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工具 - 星月编程学习小站</title>
+    <title>文本处理器 - 星月编程学习小站</title>
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/tool_common.css">
     <script src="js/jquery.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/footer.js"></script>
+    <script src="js/tool_common.js"></script>
+    <script src="js/tool1.js"></script>
 </head>
 
 <body>
     <div id="ifr">加载中……</div>
+    <div class="tool_main">
+        <div class="tool_title">
+            文本处理器
+        </div>
+        <table class="tool_table_4c">
+            <tr>
+                <td>匹配模式：</td>
+                <td><select name="text_smode" id="text_smode" onclick="sele_text_smode();">
+                    <option value="n">&nbsp;&nbsp;常规文本&nbsp;&nbsp;</option>
+                    <option value="r" selected>正则表达式</option>
+                </select></td>
+                <td>目标内容：</td>
+                <td><input type="text" maxlength="999" class="narrow_input" id="text_snr"></td>
+            </tr>
+            <tr>
+                <td>搜索模式：</td>
+                <td><select name="text_rmode" id="text_rmode" onclick="sele_text_rmode()">
+                    <option value="n">查找</option>
+                    <option value="r">替换</option>
+                </select></td>
+                <td id="text_rnr_text">替换为：</td>
+                <td><input type="text" maxlength="999" class="narrow_input" id="text_rnr"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="收起帮助" onclick="help_click();" id="help" class="alignlf2">
+                    <!--class="alignlf2"-->
+                </td>
+                <td><input type="button" id="text_deal_butt" onclick="text_deal();" value="搜索" class="alignrf"></td>
+                <td><input type="button" onclick="text_stat(1);" value="普通统计" class="aligncf"></td>
+                <td><input type="button" onclick="text_stat(2);" value="详细统计"></td>
+            </tr>
+        </table>
+        <div class="tool_help">如果是搜索，搜索目标内容的结果均会在处理结果栏显示，结果的第一行会统计结果的数目，常规搜索结果用&lt;结果&gt;表示。如果是替换，那么结果栏会显示替换后的文本。替换的内容只能是普通文本，不能作为正则表达式。</div>
+        <div class="tool_help">如果使用正则表达式搜索，请确保目标内容一定是合法的完整JS正则表达式，即以/开头的完整内容，如/./，如果需要属性参数，写在最后面，如/./igm。可以参考下面的正则表达式列表的格式。</div>
+        <div class="tool_help">普通统计会统计字数、单词数、分句数、句子数和段落数。详细统计会在普通统计的基础上统计每个字符出现的数目以及每个单词出现的数目并降序输出。</div>
+        <div class="tool_res_title">
+            常用正则表达式列表：(点击即可复制到搜索文本框)
+        </div>
+        <div class="tool_scroll_frame regex_frame_width">
+            <table class="tool_table_editable regex_table_width" border="1" cellspacing="0" id="regex_item">
+                <tr>
+                    <th>正则表达式</th>
+                    <th>功能描述</th>
+                </tr>
+            </table>
+        </div>
+        <div class="res_board_1 pad_bottom extra_height_1">
+            <div class="tool_res_title">待处理文本：</div>
+            <textarea name="text_input" id="text_input" cols="30" rows="12" class="res_text allow_select"></textarea>
+            <div class="tool_res_title">
+                处理结果：
+                <input type="button" id="clipbut" onclick="clip('clipbut','text_res')" value="复制到剪贴板">
+                <input type="button" onclick="save($('#text_res').val())" value="保存">
+            </div>
+            <textarea name="text_res" id="text_res" cols="30" rows="12" class="res_text allow_select"></textarea>
+        </div>
+        <a onfocus="this.blur();" download="text.txt" id="createInvote" class="hide">text</a>
+    </div>
     <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
 </body>
 

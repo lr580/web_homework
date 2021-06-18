@@ -144,3 +144,191 @@ function shuffle(arr) {
 function erase(arr, i) {
     arr.splice(i, 1);
 }
+
+//二分查找，返回非降序数组arr中首个大于等于v的元素所在的下标(如果比首个元素小，也返回下标0)
+function lower_bound(arr, v) {
+    let lf = 0;
+    let rf = arr.length - 1;
+    let cf;
+    let res = arr.length;
+    while (lf <= rf) {
+        cf = Math.floor((lf + rf) / 2);
+        // console.log(cf, arr[cf], arr[cf] <= v);
+        if (arr[cf] < v) {
+            lf = cf + 1;
+        } else {
+            res = cf;
+            rf = cf - 1;
+        }
+    }
+    return res;
+}
+
+//二分查找，返回非降序数组arr中首个大于等于v的元素所在的下标
+function upper_bound(arr, v) {
+    let lf = 0;
+    let rf = arr.length - 1;
+    let cf;
+    let res = arr.length;
+    while (lf <= rf) {
+        cf = Math.floor((lf + rf) / 2);
+        // console.log(cf, arr[cf], arr[cf] <= v);
+        if (arr[cf] <= v) {
+            lf = cf + 1;
+        } else {
+            res = cf;
+            rf = cf - 1;
+        }
+    }
+    return res;
+}
+
+//用对数时间复杂度加权随机抽取一个数组(需要预处理前缀和，否则复杂度是线性的)
+function choice_w(arr, wpref, wtotal, return_index = true) {
+    let v = randrange(0, wtotal - 1e-5);
+
+    let vi = lower_bound(wpref, v) - 1; //前缀和特性，下标减一
+    // console.log(v, wpref, vi);
+    return (return_index) ? vi : arr[vi];
+}
+
+//用字典树大致模拟哈希表和优先级队列等内容，尽量实现对数或常数级时间复杂度的查询
+// function trie(tid){
+//     this.id = 
+//     this.next = {};
+// }
+
+//字符串哈希函数
+function hash(str) {
+    str = '' + str; //要求v是字符串
+    let h = 0;
+    for (let i = str.length - 1; i >= 0; --i) {
+        h ^= ((h << 5) + str.charCodeAt(i) + (h >> 2));
+    }
+    return (h & 0x7fffffff);
+}
+
+//手写哈希表(对应C++的unordered_map) 未使用开放寻址法等避免冲突的办法 以后改进
+function unordered_map() {
+    this.map = [];
+    this.ori = [];
+    this.find = function(v) {
+        let h = hash(v);
+        return this.map[h]; //可能是undefined
+    }
+    this.insert = function(i, v) {
+        let h = hash(i);
+        this.map[h] = v;
+        this.ori[h] = i;
+    }
+    this.add = function(i, v) {
+        let h = hash(i);
+        this.map[h] += v;
+    }
+    this.fix = function(i, v) { //insert与add的结合体
+        let h = hash(i);
+        if (!this.map[h]) {
+            this.map[h] = 0;
+            this.ori[h] = i;
+        }
+        this.map[h] += v;
+    }
+    this.to_array = function() {
+        let res = []
+        for (let i in this.map) { //看样子js数组内置了哈希……
+            // console.log(this.map[i], this.ori[i]);
+            res.push([this.ori[i], this.map[i]]);
+        }
+        return res;
+    }
+}
+
+// //快速排序，降低时间复杂度 看样子不需要，突然发现浏览器内置的排序本身不是平方复杂度的
+// function quicksort(arr, st, lst) {
+//     if (st >= lst) {
+//         return;
+//     }
+// }
+
+//这个是降序排列pair<string, number>
+function sort_pair() {
+    return function(a, b) {
+        return b[1] - a[1];
+    }
+}
+
+//这个是升序
+function sort_num() {
+    return function(a, b) {
+        return a - b;
+    }
+}
+
+//检测浏览器排序的时间复杂度
+// let k = [];
+// for (let i = 0; i < 1000000; ++i) {
+//     k.push(randint(1, 580000000));
+// }
+// k.sort(sort_num());
+
+//将id为text的textarea或input(text/number)的内容复制到剪贴板，并更新id为button的按钮
+function clip(button, text) {
+    let objtext = document.getElementById(text);
+    objtext.select();
+    document.execCommand('Copy');
+    objtext.blur();
+    let objbut = $('#' + button);
+    objbut.val('复制文本成功');
+    setTimeout(() => {
+        objbut.val('复制到剪贴板');
+    }, 1500);
+}
+
+//将_txt字符串保存到本地，需要用到一个id为createInvote的html标签，其download属性为文件名
+function save(_txt) {
+    let isIE = (navigator.userAgent.indexOf('MSIE') >= 0);
+    if (isIE) {
+        let strHTML = _txt;
+        let winSave = window.open();
+        winSave.document.open("text", "utf-8");
+        winSave.document.write(strHTML);
+        winSave.document.execCommand("SaveAs", true, "code.txt");
+        winSave.close();
+    } else {
+        let elHtml = _txt;
+        let mimeType = 'text/plain';
+        $('#createInvote').attr('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
+        document.getElementById('createInvote').click();
+    }
+}
+
+//bid是帮助按钮id，默认名字是收起帮助
+function help_click(bid = "help") {
+    let obj = $('#' + bid);
+    if (obj.val() == '收起帮助') {
+        obj.val('展开帮助');
+        $('.tool_help').slideUp(500);
+    } else {
+        obj.val('收起帮助');
+        $('.tool_help').slideDown(500);
+    }
+    setTimeout(() => {
+        set_footer_position();
+    }, 501);
+}
+
+function len(x) {
+    if (!x) {
+        return 0;
+    }
+    if (!x.length) {
+        return 0;
+    }
+    return x.length;
+}
+
+//使用了之后就不能参与DOM了
+// onmessage = function(msg) {
+//     console.log(msg);
+//     this.postMessage('gggg');
+// };

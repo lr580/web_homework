@@ -26,3 +26,11 @@ img {
 body {
     background-color: rgb(247, 240, 228);
 }
+
+input[type='text'],
+input[type='number'],
+textarea,
+option,
+select {
+    background-color: rgb(247, 240, 228);
+}

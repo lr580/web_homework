@@ -26,7 +26,7 @@ img {
 
 #mains,
 .mains {
-    height: 1000px;
+    height: 900px;
     background-color: rgb(247, 240, 228);
     padding-left: 6%;
     padding-right: 4%;
@@ -37,16 +37,75 @@ img {
 
 .title1 {
     font-size: 28px;
-    font-weight: 900;
+    font-weight: 700;
     /* text-indent: 2em; */
     display: none;
+    margin-bottom: 8px;
+    color: rgb(0, 0, 71);
 }
 
 .content1 {
     display: none;
     text-indent: 2em;
-    font-size: 17px;
-    margin-top: 6px;
+    font-size: 18px;
+    color: rgb(14, 44, 100);
+    /* margin-top: 6px; */
+}
+
+.title0 {
+    width: 90%;
+    text-align: center;
+    font-size: 38px;
+    color: rgb(4, 4, 107);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    display: none;
+}
+
+.title2 {
+    font-size: 24px;
+    font-weight: 700;
+    display: none;
+    margin-top: 28px;
+    margin-bottom: 8px;
+    color: navy;
+}
+
+.index_left {
+    float: left;
+    width: 40%;
+}
+
+.index_right {
+    float: left;
+    width: 40%;
+    margin-left: 10%;
+}
+
+.index_list li {
+    padding-top: 8px;
+}
+
+.index_list a {
+    text-decoration: none;
+    color: rgb(14, 44, 100);
+    transition: all 0.3s;
+    /* margin-top: 10px; */
+}
+
+.index_list a:hover {
+    color: goldenrod;
+    transition: all 0.3s;
+}
+
+.index_list {
+    /* position: relative; */
+    /* left: 15%; */
+    text-indent: 0;
+    font-size: 18px;
+    color: rgb(14, 44, 100);
+    word-spacing: 1em;
 }
 
 .banner {
@@ -71,9 +130,11 @@ img {
     border-radius: 30px;
     border: 2px solid rgb(4, 46, 80);
     background-color: rgb(77, 164, 235);
-    top: 220px;
+    /* top: 220px;  无标题时 */
+    top: 312px;
     z-index: 100;
     cursor: pointer;
+    transition: background-color 0.3s, border 0.3s;
 }
 
 .slide_button_normal:hover,

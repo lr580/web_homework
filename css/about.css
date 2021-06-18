@@ -1,0 +1,82 @@
+@charset "utf-8";
+.about_frame {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: 4%;
+    margin-right: 6%;
+}
+
+.about_title {
+    width: 90%;
+    font-size: 38px;
+    color: navy;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.about_title2 {
+    width: 90%;
+    font-size: 24px;
+    color: rgb(0, 0, 82);
+    margin-top: 6px;
+    margin-left: 20px;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.about_list {
+    position: relative;
+    left: 15%;
+    text-indent: 0;
+    font-size: 18px;
+    color: rgb(14, 44, 100);
+    /* margin-bottom: 12px; */
+    word-spacing: 1em;
+}
+
+.about_list li {
+    padding-top: 5px;
+    /* padding-bottom: 5px; */
+}
+
+.about_text {
+    text-indent: 2em;
+    font-size: 18px;
+    color: rgb(14, 44, 100);
+}
+
+.about_align {
+    position: absolute;
+    top: 150px;
+}
+
+.about_left {
+    /*不知道为什么只要有两个float就会炸掉排版*/
+    /* float: left; */
+    /* width: 400px; */
+    /* margin-right: 40px; */
+    /* position: relative; */
+    width: 45%;
+    /* background-color: wheat; */
+    left: 6%;
+}
+
+.about_right {
+    /* position: relative; */
+    width: 35%;
+    /* background-color: gold; */
+    right: 8%;
+    /* float: left; */
+    /* float: left; */
+    /* width: 400px;
+    overflow: hidden; */
+    /* float: right;
+    width: 300px;
+    margin: 20px 30px; */
+}
+
+.about_mb {
+    margin-bottom: 12px;
+}

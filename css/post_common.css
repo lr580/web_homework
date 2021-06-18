@@ -132,6 +132,15 @@ a[href]:hover {
     margin-bottom: 12px;
 }
 
+.post_subsubtitle {
+    font-size: 22px;
+    color: rgb(5, 41, 107);
+    font-weight: 700;
+    margin-left: 5%;
+    margin-top: 18px;
+    margin-bottom: 10px;
+}
+
 .post_smalltitle {
     font-size: 20px;
     color: rgb(18, 61, 141);
@@ -168,4 +177,33 @@ a[href]:hover {
     /* background-color: wheat; */
     text-align: center;
     width: 90%;
+}
+
+.post_list {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-left: 45px;
+}
+
+.post_list div,
+.post_list li {
+    font-size: 18px;
+    color: rgb(14, 44, 100);
+    line-height: 28px;
+    width: 90%;
+}
+
+.dtac {
+    position: relative;
+    left: -45px;
+}
+
+strong,
+.post_list li,
+.post_list div {
+    /*终于起作用了*/
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }

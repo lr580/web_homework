@@ -20,6 +20,26 @@
 <body>
     <div id="ifr"></div>
     <div class="post_frame">
+        <div class="post_normal allow_select">对于区间上的数据查询和修改问题，我们似乎有非常多的选择。当涉及到的区间是静态区间(初始化后只查询不修改)时，我们可以根据题目性质的不同，直接使用n维前缀和/差分、ST表(稀疏表)、单调栈/单调队列得以较为简便地解决这类问题。然而，如果题目涉及了整个区间的修改操作，诸如区间每个元素加上固定值、修改为固定值、翻倍等操作时，上面的数据结构的时间复杂度便有些难堪了，我们需要一种以线性复杂度以下的复杂度进行区间修改的数据结构，没错，这便是我们今天的主角：<a href="#lineartree"><strong>线段树</strong></a>            、<a href="#treearr"><strong>树状数组</strong></a> 和 <a href="#blockarr"><strong>块状数组</strong></a>。</div>
+        <div class="post_italic allow_select">篇幅有限，下面的示例主要例题：针对区间各元素加上常数加法操作和区间求和查询，假设题目要求每次修改和查询的时间复杂度不能是线性的时间复杂度，且空间复杂度要求为线性的。</div>
+        <div class="post_subtitle allow_select" id="lineartree">线段树</div>
+        <div class="post_italic allow_select">本篇帖子是总结类的文章，所以不会涉及较多的概念引入和解释，也不会涉及基本操作证明、解析，只会给出粗略的代码，并总结相关异同特性。</div>
+        <div class="post_normal allow_select">线段树是二叉搜索树。叶节点代表点，其余节点代表区间。</div>
+        <div class="post_italic allow_select">以区间[1,4]为的四节点为例，第一层为单个节点1~4，第二层两个节点为1~2,3~4，第三层四个节点为1,2,3,4。</div>
+        <div class="post_normal allow_select">线段树一般用于维护大数据量、经常发生修改(一般只加，当然别的操作可以灵活变型)的数组的前缀和，以及由前缀和可以计算的任何其他值(符合结合律的，如max,min,xor)，如前缀积。还可以用于模拟、DP等。而且空间经过离散化以后也可以相对压缩，所以适用范围线段树更加广一些。显然时间复杂度是nlogn。一种相似的结构，树状数组能够更好地实现该目标。</div>
+        <div class="post_normal allow_select">以例题为例，代码如下(相关解释见代码)：</div>
+        <ol class="post_code" id="code_26"></ol>
+        <div class="post_italic allow_select">从线段树引申出来的，还有高级的线段树，如主席树（可持久化线段树）、zwk线段树、珂朵莉树，乃至于树套树等数据结构，且线段树除了可以做成二叉树之外，还可以做成三叉树等结构，在这里不做详细介绍。</div>
+        <div class="post_subtitle allow_select" id="treearr">树状数组</div>
+        <div class="post_normal allow_select">树状数组跟线段树的时间复杂度类似，但常数上时空复杂度都更优。但是相对地，代价是能维护的东西屈指可数，常见能维护的操作有：前缀和查询和单点修改、区间修改和单点查询(差分树状数组)、单点修改和区间最值、数组中位数。</div>
+        <div class="post_italic allow_select">特别注意，树状数组事实上并用要求的复杂度解决例题。其仅能解决例题的二者之一，即仅区间查询或仅区间修改。将其放在一起讨论仅仅是为了总结三者的异同。本题并不能使用。下面放一段解决前缀和查询和单点修改的实例代码：</div>
+        <ol class="post_code" id="code_27"></ol>
+        <div class="post_subtitle allow_select" id="blockarr">块状数组</div>
+        <div class="post_normal allow_select">分块是一种思维，而利用这种思维可以构造出块状数组这一数据结构。将一个整体划分为若干个小块，整块整体处理，零散块单独处理。将长度为n的数组划分为a块，每块长度是n/a的下取整，区间边缘零散块单独暴力处理。根据均值不等式可以证明，a为根号n时，整块不会太少，零散块不会太多，相对最优，总体时间复杂度是根号n，是根号复杂度。</div>
+        <div class="post_normal allow_select">对比之下，线段树和树状数组是对数复杂度，所以分块并不会比它们更优。分块数组可以看成是高度为3的数，全体是第一层，块是第二层，元素是第三层。但是，优点在于，块状数组维护的信息不需要满足结合律，也不需要层层之间传递标记。很重要的一个补充是，同树状数组一样，块状数组更易于理解，且代码量更短，写起来相对简单。</div>
+        <div class="post_normal allow_select">用块状数组解决例题如下：</div>
+        <ol class="post_code" id="code_28"></ol>
+        <div class="post_normal allow_select">以上便是对线段树、树状数组和块状数组三者的简单总结。感谢读者的阅读~</div>
 
     </div>
     <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>

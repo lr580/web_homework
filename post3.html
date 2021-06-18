@@ -20,7 +20,148 @@
 <body>
     <div id="ifr"></div>
     <div class="post_frame">
-
+        <div class="post_normal allow_select">git是一款强大的版本管理工具。使用git，我们可以高效实现管理对若干文件(和文件夹)的修改状态的管理，实现版本回退、分支存储，还可以实现远程管理、多人协作这样的强悍功能。这篇帖子简要地总结了git的常用指令集合，当读者忘记了其中一些指令的时候，可以快速查阅回忆。</div>
+        <div class="post_normal allow_select">本帖主要分为以下四个部分：
+            <a href="#global"><strong>全局设置</strong></a> 、
+            <!-- <a href="#file"><strong>文件操作</strong></a> 、 -->
+            <a href="#version"><strong>版本库</strong></a> 、
+            <a href="#remote"><strong>远程仓库</strong></a> 、
+            <a href="#branch"><strong>分支</strong></a> 。
+            <!-- <a href="#tag"><strong>标签</strong></a> 。 -->
+        </div>
+        <div class="post_subtitle allow_select" id="global">全局设置</div>
+        <div class="post_normal allow_select">查看用户姓名和邮箱：</div>
+        <ul class="post_list allow_select">
+            <li>git config user.name</li>
+            <li>git config user.email</li>
+        </ul>
+        <div class="post_normal allow_select">修改用户姓名和邮箱：</div>
+        <ul class="post_list allow_select">
+            <li>git config --global user.name "名字"</li>
+            <li>git config --global user.email "邮箱"</li>
+        </ul>
+        <div class="post_normal allow_select">生成SSH：</div>
+        <ul class="post_list allow_select">
+            <li>ssh-keygen -t rsa -C "邮箱"</li>
+            <div class="post_italic dtac">之后一路回车</div>
+        </ul>
+        <!-- <div class="post_subtitle allow_select" id="file">文件操作</div> -->
+        <div class="post_subtitle allow_select" id="version">版本库</div>
+        <div class="post_normal allow_select">初始化：</div>
+        <ul class="post_list allow_select">
+            <li>git init</li>
+            <div>将当前目录变成git仓库</div>
+        </ul>
+        <div class="post_normal allow_select">更新：（新建的或修改的文件或文件夹，需要确认更新，从工作区放到暂存区）</div>
+        <ul class="post_list allow_select">
+            <!-- <div>新建的或修改的文件或文件夹，需要确认更新，从工作区放到暂存区</div> -->
+            <li>git add 文件(夹)名 #可以多个参数</li>
+            <div>一次修改后add，如果继续修改，然后commit，继续修改的内容不会被提交。</div>
+            <li>git add .</li>
+            <div>上面命令会更新当前目录下的全部内容</div>
+        </ul>
+        <div class="post_normal allow_select">删除：</div>
+        <ul class="post_list allow_select">
+            <li>git rm 文件名</li>
+            <div>从暂存区删除文件</div>
+        </ul>
+        <div class="post_normal allow_select">提交：</div>
+        <ul class="post_list allow_select">
+            <li>git commit -m "版本信息"</li>
+            <div>将所有暂存区的提交正式保存</div>
+        </ul>
+        <div class="post_normal allow_select">撤销：</div>
+        <ul class="post_list allow_select">
+            <li>git checkout -- 文件名</li>
+            <div>工作区的修改全部撤销。暂存区的不会被撤销。工作区被修改意味着你当前所做的内容被自动覆盖为暂存区内容了。</div>
+            <li>git reset HEAD 文件名</li>
+            <div>把暂存区的修改撤销掉。工作区不变，意味着你现在做的内容不会被覆盖。如果已经commit但未提交版本库，用版本回退。如果已经提交远程库，无力回天。</div>
+        </ul>
+        <div class="post_normal allow_select">查询：</div>
+        <ul class="post_list allow_select">
+            <li>git status</li>
+            <div>查看有哪些文件被修改过，与commit版本不同</div>
+            <li>git lg</li>
+            <div>从近到远查看commit日志</div>
+            <li>git diff 文件名</li>
+            <div>查看与已add相比，当下的异同</div>
+            <li>git diff 版本号1 版本号2 文件(夹)</li>
+            <div>版本2为新，版本1为旧，查看更新。在分支里特别有用。记得按enter继续显示，按q退出显示</div>
+        </ul>
+        <div class="post_subtitle allow_select" id="remote">远程仓库</div>
+        <div class="post_normal allow_select">查询：</div>
+        <ul class="post_list allow_select">
+            <li>git remote</li>
+            <div>查看所在目录的git有多少个远程仓库</div>
+            <li>git remote -v</li>
+            <div>查看详细push,fetch权限</div>
+        </ul>
+        <div class="post_normal allow_select">新建：</div>
+        <ul class="post_list allow_select">
+            <li>git remote add 远程仓库名 git@github.com:github用户名/git仓库名(.git)</li>
+            <div>如git remote add origin git@github.com:michaelliao/learngit.git</div>
+            <li>git checkout -b 本地分支名 远程仓库名/远程分支名</li>
+            <div>对分支而言的新建</div>
+        </ul>
+        <div class="post_normal allow_select">删除：</div>
+        <ul class="post_list allow_select">
+            <li>git remote rm 远程仓库名</li>
+        </ul>
+        <div class="post_normal allow_select">推送：</div>
+        <ul class="post_list allow_select">
+            <li>git push 远程仓库名 本地分支名</li>
+            <div>如果是第一次推送，加-u(则以后可以简写git push)</div>
+            <div>在初始化后，需要通过add,commit后才能进行push，否则会报错</div>
+            <div>第一次在github推送，会有一个警告验证key，输入yes即可</div>
+        </ul>
+        <div class="post_normal allow_select">获取：</div>
+        <ul class="post_list allow_select">
+            <li>git pull 远程仓库名 本地分支名</li>
+            <div>如果获取失败，要指定本地分支和远程分支的链接，用下面二者之一：</div>
+            <ul class="post_list allow_select">
+                <li>git branch --set-upstream-to=远程仓库名/远程分支 本地分支</li>
+                <li>git fetch --all</li>
+                <div>git pull 远程仓库名 本地分支名</div>
+            </ul>
+        </ul>
+        <div class="post_normal allow_select">克隆：</div>
+        <ul class="post_list allow_select">
+            <li>git clone git@github.com:用户名/git仓库名</li>
+            <div>点fork，在自己的账号下克隆了一个仓库，之后使用。会新建文件夹的，之后要cd之后才会进入</div>
+        </ul>
+        <div class="post_subtitle allow_select" id="branch">分支</div>
+        <div class="post_normal allow_select">查询：</div>
+        <ul class="post_list allow_select">
+            <li>git branch</li>
+            <div>带星号是当前分支</div>
+        </ul>
+        <div class="post_normal allow_select">创建：</div>
+        <ul class="post_list allow_select">
+            <li>git checkout -b 分支名</li>
+            <li>git switch -c 分支名</li>
+            <div>创建并切换到新分支</div>
+            <li>git branch 分支名</li>
+            <div>创建但不切换</div>
+        </ul>
+        <div class="post_normal allow_select">合并：</div>
+        <ul class="post_list allow_select">
+            <li>git merge 分支名</li>
+            <div>把某个分支合并到当前分支，如果出现冲突，必须手动解决，合并分支时一般会用fast forward模式，删除分支后丢失分支信息；如果关闭，则历史上可以看到分支信息：</div>
+            <ul class="post_list allow_select">
+                <li>git merge --no-ff -m "新commit描述" 分支名</li>
+            </ul>
+        </ul>
+        <div class="post_normal allow_select">删除：</div>
+        <ul class="post_list allow_select">
+            <li>git branch -d 分支名</li>
+            <div>删除已合并的分支。如果要删除未合并(会丢失修改)的分支，使用-D</div>
+        </ul>
+        <div class="post_normal allow_select">切换：</div>
+        <ul class="post_list allow_select">
+            <li>git checkout 分支名</li>
+            <li>git switch 分支名</li>
+        </ul>
+        <!-- <div class="post_subtitle allow_select" id="tag">标签</div> -->
     </div>
     <iframe src="footer.html" frameborder="0" width="100%" height="48px" scrolling="no" id="footer_frame" class="footer_frame"></iframe>
 </body>

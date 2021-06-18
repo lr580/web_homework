@@ -1,7 +1,8 @@
 $(() => {
     // console.log('qwq');
-    append_rand_item('xxx', 3);
-    append_rand_item('y');
+    sele_ran_rep();
+    sele_ran_num();
+    sele_ran_wmode();
 });
 
 function ran_help() {
@@ -13,6 +14,9 @@ function ran_help() {
         obj.val('收起帮助');
         $('.tool_help').slideDown(500);
     }
+    setTimeout(() => {
+        set_footer_position();
+    }, 501);
 }
 
 function sele_ran_num() {
@@ -71,10 +75,11 @@ function append_rand_item(nam, w = 1) {
     later_bind(tid, obj_tr_w.children(), change_item_w);
     obj_tr.append(obj_tr_w);
 
-    let obj_tr_del = $('<td><div class="textbutton" onclick="delete_rand_item(' + tid + ')">删除该列</div></td>')
+    let obj_tr_del = $('<td><div class="textbutton" onclick="delete_rand_item(' + tid + ')">删除该项</div></td>')
     obj_tr.append(obj_tr_del);
 
     ++tid;
+    set_footer_position(); //但凡可能改变高度都应该设置一下……
 }
 
 //曾经：一定要settimeout才不会出错……但是settimeout之后tid变了，所以异步一下
@@ -104,7 +109,7 @@ function delete_rand_item(tid) {
         objs_new[i].innerHTML = (i + 1);
     }
 
-    console.log(ran_item);
+    // console.log(ran_item);
 }
 
 function tid_to_index(tid) {
@@ -168,5 +173,122 @@ function ran_deal_read(tx) {
 }
 
 function sele_ran_wmode() {
-
+    let ran_type = $('#ran_wmode').val();
+    //暂时放弃权重列的动态显示和隐藏
+    // if (ran_type == 'w') {
+    // $('#wcx').css('display', 'none');
+    // $('input[id^=iwx]').css('display', 'none');
+    // $('#wwx').html('');
+    // } else {
+    // $('#wcx').css('display', 'initial');
+    // $('input[id^=iwx]').css('display', 'initial');
+    // $('#wwx').html('权重');
+    // }
 }
+
+function sele_ran_fold() {
+    //该函数暂不需要使用
+}
+
+function sele_ran_rep() {
+    let ran_rep = $('#ran_rep').val();
+    if (ran_rep == 'n') {
+        $('#ran_fold_text').html('&nbsp;');
+        $('#ran_fold').css('display', 'none');
+    } else {
+        $('#ran_fold_text').html('是否折叠结果：');
+        $('#ran_fold').css('display', 'initial');
+    }
+}
+
+//因为在该数据范围内时间复杂度绝大多数情况下暂时没有太高，所以不需要开web worker多线程
+function ran_generate() {
+    let obj = $('#ran_res');
+    if (ran_item.length <= 0) {
+        obj.val('当前项目列表为空！');
+        return;
+    }
+    let ran_type = $('#ran_wmode').val();
+    let ran_rep = $('#ran_rep').val();
+    let ran_num = get_number_float('ran_num');
+    let ran_fold = $('#ran_fold').val();
+    // console.log(ran_type, ran_rep, ran_num, ran_fold);
+    if ('n' == ran_rep && ran_item.length < ran_num) {
+        obj.val('不允许重复时无法抽取多于项目数的次数！');
+        return;
+    }
+
+    let ran_w_sum = 0;
+    let ran_w_pref_sum = [0]; //权重前缀和
+    let ran_item_name = [];
+    for (let i = 0; i < ran_item.length; ++i) {
+        ran_w_sum += (ran_type == 'w') ? ran_item[i][1] : 1;
+        ran_w_pref_sum.push(ran_w_sum);
+        ran_item_name.push(ran_item[i][0]);
+    }
+    // console.log(ran_w_sum, ran_w_pref_sum);
+
+    let ran_result = [];
+    let r = '';
+
+    if ('y' == ran_rep) {
+        for (let i = 0; i < ran_num; ++i) {
+            ran_result.push(choice_w(ran_item_name, ran_w_pref_sum, ran_w_sum, false));
+        }
+
+        if ('n' == ran_fold) {
+            for (let i = 0; i < ran_num; ++i) {
+                r += ran_result[i] + '\n';
+            }
+        } else {
+            let um = new unordered_map();
+            for (let i = 0; i < ran_result.length; ++i) {
+                um.fix(ran_result[i], 1);
+            }
+            let umarray = um.to_array();
+            umarray.sort(sort_pair());
+            // console.log(umarray);
+
+            for (let i = 0; i < umarray.length; ++i) {
+                r += umarray[i][0] + ' x' + umarray[i][1] + '\n';
+            }
+        }
+    } else {
+        //然而理论上……不重复随机数暴力搜索的事件复杂度是平方的，所以考虑转换思路，使用shuffle然后只取前ran_num个元素，按理来说可以实现等权随机抽取，而加权随机抽取的直接暴力法最坏时间复杂度非常差，可以考虑模拟成等权随机抽取，即插入重复元素，重复数等于相对权重……但是这样的问题在于仍然需要筛掉重复元素，所以时间复杂度又会退化成本来的复杂度……暂时没想到更好的做法
+
+        //综上所述，不加权，不允许重复，总时间复杂度是线性的；近似来说，加权平均复杂度是次数乘权重和，最坏时间复杂度大约是次数乘(权重和除以最小权重(假设是小于1的实数))
+
+        //……后续……想到了一种优化策略：每次抽取完之后重新搞前缀和，那么时间复杂度是次数的平方，以后有空再优化吧
+
+        //此外，理论上全局的最优复杂度可以用数学公式降到线性……但是暂时没有想到如何做
+        if (ran_type == 'n') {
+            shuffle(ran_item_name);
+            for (let i = 0; i < ran_num; ++i) {
+                r += ran_item_name[i] + '\n';
+            }
+        } else {
+            //为了实现O(1)的常数时间复杂度查询，使用哈希表
+            let um = new unordered_map();
+            // for (let i = 0; i < ran_item.length; ++i) {
+            //     um.fix(ran_item_name[i], 1);
+            // }
+            let suc = 0;
+            while (suc < ran_num) {
+                let v = choice_w(ran_item_name, ran_w_pref_sum, ran_w_sum, false);
+                if (um.find(v)) {
+                    continue;
+                } else {
+                    r += v + '\n';
+                    um.fix(v, 1);
+                    ++suc;
+                }
+            }
+
+        }
+    }
+    $('#ran_res').val(r);
+}
+
+// function ran_deal() {
+
+// }

@@ -109,6 +109,10 @@ table input[type="file"] {
     cursor: pointer;
 }
 
+table select {
+    cursor: pointer;
+}
+
 .tool_table_editable td,
 .tool_table_editable th {
     padding: 6px;
@@ -164,6 +168,11 @@ table input[type="file"] {
     font-weight: 700;
 }
 
+.tool_res_title input[type="button"],
+.tool_res_title select {
+    margin-left: 20px;
+}
+
 .tool_help {
     font-size: 16px;
     color: rgb(14, 44, 100);
@@ -203,6 +212,11 @@ table input[type="file"] {
     left: -20px;
 }
 
+.alignrf {
+    position: relative;
+    left: 40px;
+}
+
 #clipboard {
     display: none;
     /*剪贴板*/
@@ -214,4 +228,88 @@ table input[type="file"] {
 
 .ti2em {
     text-indent: 2em;
+}
+
+.ti2em:first-letter {
+    color: red;
+    /* 未起作用 */
+}
+
+.ti2em:first-line {
+    background-color: #fff;
+    /* color: blue; */
+    /*起作用了*/
+}
+
+.pad_bottom {
+    margin-left: 40px;
+    margin-bottom: 100px;
+}
+
+.ts {
+    background-color: wheat;
+}
+
+.tool_scroll_frame {
+    /* height: 485px; */
+    /* height: 326px;  firefox最佳高度 */
+    height: 319px;
+    /*chorme最佳高度*/
+    overflow: auto;
+    /* overflow: scroll; */
+    /* overflow-x: scroll; */
+    /* over */
+}
+
+.tool_scroll_frame_2 {
+    height: 229px;
+    overflow: auto;
+}
+
+.narrow_input {
+    width: 180px;
+}
+
+.extra_height_1 {
+    /* height: 700px; */
+    height: 700px;
+    /*防止半屏时出显示bugs*/
+}
+
+.extra_height_2 {
+    /* height: 700px; */
+    height: 500px;
+    /*防止半屏时出显示bugs*/
+}
+
+.cp {
+    cursor: pointer;
+}
+
+.regex_frame_width {
+    width: 600px;
+    position: relative;
+    left: -30px;
+}
+
+.regex_table_width {
+    width: 540px;
+}
+
+.help_lim_width {
+    width: 600px;
+}
+
+.tool_title input[type="button"] {
+    margin-left: 30px;
+}
+
+.extra_mb_1 {
+    margin-bottom: 20px;
+}
+
+.p2,
+textarea {
+    padding: 2px;
+    /*不然的话在chorme下根本行首看不到光标……*/
 }
