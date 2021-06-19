@@ -14,11 +14,13 @@ function sele_text_rmode() {
     if ('n' == v) {
         $('#text_rnr_text').html('&nbsp;') //这个td如果直接display none再display initial的话就不会居右了……
         $('#text_rnr').css('display', 'none');
-        $('#text_deal_butt').html('替换');
+        // $('#text_deal_butt').val('替换'); //而不是html
+        $('#text_deal_butt').val('搜索'); //而不是html
     } else {
         $('#text_rnr_text').html('替换为：');
         $('#text_rnr').css('display', 'initial');
-        $('#text_deal_butt').html('搜索');
+        $('#text_deal_butt').val('替换');
+        // $('#text_deal_butt').val('搜索');
     }
 }
 
@@ -113,9 +115,16 @@ function text_deal() {
     if (smode == 'r') {
         try {
             snr = eval(snr);
+            if (!(snr instanceof RegExp)) { //为了能够处理空白字符
+                snr = $('#text_snr').val();
+            }
             if (rmode == 'n') {
                 res = input.match(snr);
-                rtx = ((rmode != 'r') ? '匹配' : '替换') + '完毕，对于' + snr + '一共搜索到' + res.length + '个结果，分别如下：\n';
+                if (!snr) {
+                    snr = '';
+                }
+                rtx = ((rmode != 'r') ? '匹配' : '替换') + '完毕，对于"' + snr + '"一共搜索到' + len(res) + '个结果，分别如下：\n';
+                // rtx = ((rmode != 'r') ? '匹配' : '替换') + '完毕，对于' + snr + '一共搜索到' + res.length + '个结果，分别如下：\n';
             } else {
                 res = input.replace(snr, rnr);
                 rtx = res;
@@ -140,7 +149,7 @@ function text_deal() {
                     } else {
                         now = pos + snr.length;
                         // rrtx += input.substr(pos, snr.length);
-                        console.log(pos, now, last_end);
+                        // console.log(pos, now, last_end);
                         rrtx += input.substr(last_end, now - last_end - snr.length);
                         // rrtx += '<span class="highlight">' + snr + '</span>';
                         rrtx += ' <' + snr + '> ';
@@ -149,8 +158,8 @@ function text_deal() {
                     }
                 }
                 rrtx += input.substr(last_end);
-                console.log(rrtx);
-                rtx = '搜索成功，共找到' + cnt + '个' + snr + '，结果如下：\n' + rrtx;
+                // console.log(rrtx);
+                rtx = '搜索成功，共找到' + cnt + '个"' + snr + '"，查找结果如下：\n' + rrtx;
             } else {
                 res = input.replace(snr, rnr);
                 rtx = res;
@@ -161,7 +170,8 @@ function text_deal() {
     }
     // console.log(input, snr, rnr, smode, rmode, typeof snr);
     if (rmode == 'n') {
-        for (let i = 0; i < res.length; ++i) {
+        // for (let i = 0; i < res.length; ++i) {
+        for (let i = 0; i < len(res); ++i) {
             rtx += res[i] + '\n';
         }
     }

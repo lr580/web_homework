@@ -1,13 +1,14 @@
 @charset "utf-8";
 #star {
     height: 150px;
+    /* z-index: -1; */
     /* background-color: #fff; */
 }
 
 .fix1 {
     position: relative;
     /* top: 230px; */
-    top: 130px;
+    top: 160px;
     right: 20px;
 }
 

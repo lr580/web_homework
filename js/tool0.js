@@ -45,14 +45,18 @@ function append_func_list() {
 }
 
 function load_memory() {
-    let ls = localStorage;
-    if (!ls.length) {
-        return;
+    try {
+        let ls = localStorage;
+        if (!ls.length) {
+            return;
+        }
+        let memo = ls.getItem(ls.key(0)); //目前来说，整个网页只有这里需要存储
+        memo = JSON.parse(memo);
+        // console.log(memo);
+        $('#cal_input').val(memo.v);
+    } catch (err) { //非live可能会炸一次初始化
+        // console.log(err);
     }
-    let memo = ls.getItem(ls.key(0)); //目前来说，整个网页只有这里需要存储
-    memo = JSON.parse(memo);
-    // console.log(memo);
-    $('#cal_input').val(memo.v);
 }
 
 function save_memory() {
@@ -62,15 +66,35 @@ function save_memory() {
     ls.setItem(0, JSON.stringify({ v: memo }));
 }
 
-function _cal() {
+function locationorigin() {
+    return location.href.substr(0, Math.max(0, location.href.lastIndexOf('/')));
+}
+
+const ban_webworker = true; //修锅 chorme (非live或未设置过下)不支持 webworker
+
+function _cal() { //live可以……非live又出锅了
     $('#cal_res').val('计算中，请稍等……');
-    //p.s. 实践表明：web worker 并不是严格意义的多线程，跑着的时候还是会卡的，只不过不会卡死而已
-    let w = new Worker('/js/tool0_thread.js');
-    w.postMessage($('#cal_input').val());
-    w.onmessage = (e) => {
-        // console.log(e.data);
-        $('#cal_res').val(e.data);
+
+    if (ban_webworker) {
+        let code = $('#cal_input').val();
+        try {
+            eval(code);
+            _show();
+        } catch (err) {
+            _res = '脚本出错：' + err;
+            _show();
+        }
+    } else {
+        let dir = locationorigin() + '/js/tool0_thread.js' //非live炸掉一锅
+        let w = new Worker(dir); //chorme不能开web worker???
+        w.postMessage($('#cal_input').val());
+        w.onmessage = (e) => {
+            // console.log(e.data);
+            $('#cal_res').val(e.data);
+        }
     }
+    //p.s. 实践表明：web worker 并不是严格意义的多线程，跑着的时候还是会卡的，只不过不会卡死而已
+
 
     // return;
     // let code = $('#cal_input').val();
@@ -148,4 +172,8 @@ function _raise(fname, fpara, reason) {
     }
     print('[error]执行函数' + fname + '(' + spara + ')出错：' + reason);
     // _show();
+}
+
+function _raise(a, b, c) { //调试函数重名的结果
+    console.log(a, b, c);
 }

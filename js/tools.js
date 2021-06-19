@@ -10,12 +10,16 @@ $(() => {
     $(window).scroll(toolpage_height).resize(toolpage_height);
     toolpage_height();
     // set_footer_position();
+    // set_footer_position();
 });
 
 function goto_tool(tid) {
     // let slash_pos = Math.max(0, location.href.lastIndexOf('/'));
     // let new_href = location.href.substr(0, slash_pos);
-    let new_href = location.origin + '/tool' + tid + '.html';
+    // let new_href = location.origin + '/tool' + tid + '.html'; 非live会炸
+    let hp = Math.max(location.href.lastIndexOf('/'), 0);
+    let ori = location.href.substr(0, hp);
+    let new_href = ori + '/tool' + tid + '.html';
     location.href = new_href;
 }
 

@@ -92,7 +92,7 @@ function search() {
 
     let ac_posts = [];
     for (let i = 0; i < posts_abbr.length; ++i) {
-        if (-1 != posts_abbr[i].title.indexOf(nr)) {
+        if (-1 != posts_abbr[i].title.toLowerCase().indexOf(nr.toLowerCase())) {
             ac_posts.push(posts_abbr[i]);
         }
     }
@@ -125,7 +125,7 @@ function show_search() {
         location.href += '&search=' + encodeURI(nr);
     } else {
         let new_href = location.href.replace(/search=[^&]*/i, 'search=' + encodeURI(nr));
-        if (new_href != location.href) {
+        if (true || new_href != location.href) { //直接转吧……
             location.href = new_href;
         }
     }
@@ -198,7 +198,7 @@ function load_post(ac_posts) {
 
         let ad_posts = [];
         for (let i = 0; i < ac_posts.length; ++i) {
-            if (-1 != ac_posts[i].title.indexOf(search_nr)) {
+            if (-1 != ac_posts[i].title.toLowerCase().indexOf(search_nr.toLowerCase())) {
                 ad_posts.push(ac_posts[i]);
             }
         }

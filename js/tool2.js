@@ -23,7 +23,7 @@ function sele_ran_num() {
     get_and_fix_number('ran_num');
 }
 
-function ran_read(files) {
+function ran_read(files) { //根据filereader性质，再次选择同样文件不会触发，所以不算是bugs
     if (files.length) {
         let file = files[0];
         let reader = new FileReader();
@@ -110,6 +110,7 @@ function delete_rand_item(tid) {
     }
 
     // console.log(ran_item);
+    set_footer_position();
 }
 
 function tid_to_index(tid) {

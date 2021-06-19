@@ -78,6 +78,10 @@ function select_except(arr) {
     return rid;
 }
 
+function locationorigin() {
+    return location.href.substr(0, Math.max(0, location.href.lastIndexOf('/')));
+}
+
 //建立帖子的头部和尾部内容
 //因为对于丰富格式的html帖子正文文本存json操作不便，所以还是打算直接放在html里
 function build_common() {
@@ -104,7 +108,7 @@ function build_common() {
     obj_frame.prepend(obj_frame_href);
 
     var obj_href1 = $('<a class="post_sub_href">帖子</a>');
-    obj_href1.attr('href', location.origin + '/posts.html');
+    obj_href1.attr('href', locationorigin() + '/posts.html');
     obj_frame_href.append(obj_href1);
 
     const conn_htmlcode = '<div class="post_sub_href_conn">&gt;&gt;</div>';
@@ -112,7 +116,7 @@ function build_common() {
     obj_frame_href.append(obj_hconn1);
 
     var obj_href2 = $('<a class="post_sub_href"></a>');
-    obj_href2.attr('href', location.origin + '/posts.html?type=' + now_post_info.type);
+    obj_href2.attr('href', locationorigin() + '/posts.html?type=' + now_post_info.type);
     obj_href2.html(sc_type[now_post_info.type]);
     obj_frame_href.append(obj_href2);
 
@@ -122,7 +126,7 @@ function build_common() {
     var obj_link_prev = $('<a class="post_link_prev"></a>');
     if (pid > 0) {
         obj_link_prev.html('上一篇：' + posts_abbr[pid - 1].title);
-        obj_link_prev.attr('href', location.origin + '/post' + (pid - 1) + '.html');
+        obj_link_prev.attr('href', locationorigin() + '/post' + (pid - 1) + '.html');
     } else {
         obj_link_prev.html('已经是第一篇文章了');
     }
@@ -131,7 +135,7 @@ function build_common() {
     var obj_link_next = $('<a class="post_link_next"></a>');
     if (pid + 1 < posts_abbr.length) {
         obj_link_next.html('下一篇：' + posts_abbr[pid + 1].title);
-        obj_link_next.attr('href', location.origin + '/post' + (pid + 1) + '.html');
+        obj_link_next.attr('href', locationorigin() + '/post' + (pid + 1) + '.html');
     } else {
         obj_link_next.html('已经是最后一篇文章了');
     }
@@ -151,7 +155,7 @@ function build_common() {
         var obj_recommend_post = $('<a class="post_recommend"></a>');
         var obj_temp_div = $('<div></div>');
         obj_recommend_post.html(posts_abbr[rid].title);
-        obj_recommend_post.attr('href', location.origin + '/post' + rid + '.html');
+        obj_recommend_post.attr('href', locationorigin() + '/post' + rid + '.html');
         obj_temp_div.append(obj_recommend_post);
         obj_frame.append(obj_temp_div);
     }
